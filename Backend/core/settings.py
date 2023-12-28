@@ -28,23 +28,32 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 
 INSTALLED_APPS = [
-    'users',
-    'home',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'coreapi',
+    'users',
+    'home',
+    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -80,11 +89,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'yugidb',
-        'USER': 'postgres',
-        'PASSWORD': 'Kurumi98',
-        'HOST' : 'localhost',
-        'PORT': '5432'
+        'NAME': os.getenv("POSTGRES_NAME"),
+        'USER': os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+        'HOST' : os.getenv("POSTGRES_HOST"),
+        'PORT':os.getenv("POSTGRES_PORT") 
     }
 }
 
@@ -143,4 +152,13 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# cors auth
+CORS_ALLOWED_ORIGINS = [os.getenv("FRONTEND_URL")]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+}
+
+AUTH_USER_MODEL=('users.User')
