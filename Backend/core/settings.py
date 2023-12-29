@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'coreapi',
     'users',
     'home',
+    'cards',
+    'decks'
     
 ]
 

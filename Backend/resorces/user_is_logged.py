@@ -1,5 +1,5 @@
+from .JWT import token_decode
 
-def user_is_logged(count):
-    if count == 0:
-        return False
-    return True
+
+def user_is_logged(token):
+    return token_decode(token=token)

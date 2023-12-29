@@ -5,13 +5,14 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
+import datetime
 from django.contrib.auth import authenticate
 from django.utils.decorators import method_decorator
 from users.serialaizer import UserSerializer
 from users.models import User
 from resorces.user_is_logged import user_is_logged
 from django.core.serializers import serialize
-
+from resorces.JWT import token_decode, token_sign
 
 # from rest_framework import status
 # from rest_framework.decorators import api_view
@@ -158,44 +159,86 @@ from django.core.serializers import serialize
 
 class User_View_Common(APIView):
     def post(self, request, *args, **kwargs):
-        try:
-            # queryset = User.objects.filter(username=request.data["username"])
-            # if queryset.count() != 0:
-            #     return Response(
-            #         {"error": "I found you!!"}, status=status.HTTP_200_OK
-            #     )
-            # else:
-            #     return Response(
-            #         {"error": "User not found"}, status=status.HTTP_400_BAD_REQUEST
-            #     )
+        # try:
+        # queryset = User.objects.filter(username=request.data["username"])
+        # if queryset.count() != 0:
+        #     return Response(
+        #         {"error": "I found you!!"}, status=status.HTTP_200_OK
+        #     )
+        # else:
+        #     return Response(
+        #         {"error": "User not found"}, status=status.HTTP_400_BAD_REQUEST
+        #     )
+        auth = authenticate(
+            request,
+            username=request.data["username"],
+            password=request.data["password"],
+        )
 
-            auth = authenticate(
-                request,
-                username=request.data["username"],
-                password=request.data["password"],
-            )
-            print(auth)
-            if auth != None:
-                print(2)
-                return Response(
-                    {"username": request.data["username"]}, status=status.HTTP_200_OK
-                )
+        # token= jwt.encode(payLoad, os.getenv('SECRET'),algorithm="HS256")
+
+        if auth != None:
+            payLoad = {
+                "id": auth.id,
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=24),
+                "iat": datetime.datetime.utcnow(),
+            }
+            token = token_sign(payLoad=payLoad)
+            if token != False:
+                return Response({"token": token}, status=status.HTTP_200_OK)
             else:
-                print(1)
                 return Response(
-                    {"error": "Invalid credentials!"}, status=status.HTTP_403_FORBIDDEN
+                    {"error": "Error signing the token."},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
-        except:
+    # except:
+    #     return Response(
+    #         {"error": "Invalid data!"}, status=status.HTTP_400_BAD_REQUEST
+    #     )
+
+
+class User_View_Create(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = UserSerializer(data=request.data)
+        if not serializer.is_valid():
             return Response(
-                {"error": "Invalid data!"}, status=status.HTTP_400_BAD_REQUEST
+                {"error": "The username or the email are already taken"},
+                status=status.HTTP_409_CONFLICT,
             )
-
+        serializer.save()
+        auth = authenticate(
+            request,
+            username=request.data["username"],
+            password=request.data["password"],
+        )
+        if auth != None:
+            payLoad = {
+                "id": auth.id,
+                "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=24),
+                "iat": datetime.datetime.utcnow(),
+            }
+            token = token_sign(payLoad=payLoad)
+            if token != False:
+                return Response({"token": token}, status=status.HTTP_201_CREATED)
+            else:
+                return Response(
+                    {"error": "Error signing the token."},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+        else:
+            return Response(
+                {"error": "Error creating the new user."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+        # headers = self.get_success_headers(serializer.data)
 
 class home_view(APIView):
     def get(self, request, id, *args, **kwargs):
         queryset = User.objects.filter(id=id)
-
+        serializer = self.get_serializer(data=request.data)
         # logged = True
         # if queryset.count() == 0:
         #     logged = False

@@ -1,8 +1,9 @@
 
 import axios from "axios"
 import { useEffect } from "react";
-import { BrowserRouter,redirect } from "react-router-dom";
+import { BrowserRouter, redirect } from "react-router-dom";
 import Home_Routes from "./Routes/home.routes";
+import Cards_Routes from "./Routes/cards.routes";
 
 // http://localhost:4000/api/v1/users/
 
@@ -42,9 +43,13 @@ const put_home = async () => {
 //     // siempre sera executado
 //   })
 
-export const redirect_to =(from, to)=>{
-    if(window.location.pathname === from){
-        window.location.href = to;
+export const redirect_to = ({ from, to }) => {
+    if (from !== undefined) {
+        if (window.location.pathname === from) {
+            window.location.href = to;
+        }
+    }else{
+        window.location.href =window.origin + to;
     }
 }
 
@@ -55,12 +60,17 @@ export default function App() {
     //     // put_home()
     // }, [])
 
-    redirect_to("/", '/home')
+    redirect_to({
+        from: "/", to: '/home'
+    })
 
 
     return <div>
-    <BrowserRouter>
-    <Home_Routes></Home_Routes>
-    </BrowserRouter>
+        <div id="subbody"></div>
+        <BrowserRouter>
+            <Home_Routes></Home_Routes>
+            <Cards_Routes></Cards_Routes>
+        </BrowserRouter>
     </div>
 }
+

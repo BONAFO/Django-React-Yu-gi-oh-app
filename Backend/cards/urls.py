@@ -16,15 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from home import urls as home_urls
-from cards import urls as cards_urls
-from auth.validate_token_view import Validate_token_View
-from rest_framework import routers, documentation
+from .views import Cards_View_Common,Cards_View_Particular
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/v1/validate-token/", Validate_token_View.as_view()),
-    path("api/v1/users/", include(home_urls)),
-    path("api/v1/cards/", include(cards_urls)),
-    path("api/v1/docs/", documentation.include_docs_urls(title= "Api")),
+    path("", Cards_View_Common.as_view()),    
+    path("<int:id>", Cards_View_Particular.as_view()),
 ]
