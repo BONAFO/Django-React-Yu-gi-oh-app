@@ -1,0 +1,45 @@
+[
+    {
+        "model": "cards.card_attribute",
+        "fields": {
+            "name": "dark"
+        }
+    },
+    {
+        "model": "cards.card_attribute",
+        "fields": {
+            "name": "divine"
+        }
+    },
+    {
+        "model": "cards.card_attribute",
+        "fields": {
+            "name": "earth"
+        }
+    },
+    {
+        "model": "cards.card_attribute",
+        "fields": {
+            "name": "fire"
+        }
+    },
+    {
+        "model": "cards.card_attribute",
+        "fields": {
+            "name": "water"
+        }
+    },
+    {
+        "model": "cards.card_attribute",
+        "fields": {
+            "name": "light"
+        }
+    },
+    {
+        "model": "cards.card_attribute",
+        "fields": {
+            "name": "wind"
+        }
+    }
+]
+

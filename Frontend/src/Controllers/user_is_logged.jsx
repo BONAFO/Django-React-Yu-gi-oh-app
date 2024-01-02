@@ -7,20 +7,16 @@ const validate_token = (token) => {
 
 const user_is_logged = async () => {
     const token = (localStorage.getItem("token"));
-    // if(token !== null){
 
-    // }else{
-
-    // }
     if (token === null) {
-        redirect_to({ to: "/home" })
+        redirect_to({ to: "/login" })
     }
 
     try {
-        await validate_token(token)
+       await validate_token(token)
     } catch (error) {
         console.log(error);
-        redirect_to({ to: "/home" })
+        redirect_to({ to: "/login" })
     }
 
 }

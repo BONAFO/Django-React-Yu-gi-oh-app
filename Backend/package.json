@@ -1,14 +1,13 @@
 {
-
     "scripts": {
-
         "start": "py ./manage.py runserver 4000",
-
         "migrate": "py ./manage.py makemigrations && py ./manage.py migrate",
-
-        "go": "npm run migrate && npm start"
-
+        "go": "npm run migrate && npm start",
+        "filldb": "py .\\manage.py loaddata .\\fixtures\\attributes.json && py .\\manage.py loaddata .\\fixtures\\rarity.json &&py .\\manage.py loaddata .\\fixtures\\subtype.json &&py .\\manage.py loaddata .\\fixtures\\types.json "
     }
-
 }
+
+
+
+
 

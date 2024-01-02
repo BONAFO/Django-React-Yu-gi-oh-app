@@ -1,0 +1,233 @@
+[
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "aqua",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "beast",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "beast-warrior",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "continuous",
+            "card_family": "s"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "counter",
+            "card_family": "t"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "creator-god",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "cyberse",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "dinosaur",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "divine-beast",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "normal",
+            "card_family": "st"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "dragon",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "equip",
+            "card_family": "s"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "fairy",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "field",
+            "card_family": "s"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "fiend",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "fish",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "illusion",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "insect",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "machine",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "plant",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "psychic",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "pyro",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "quick-spell",
+            "card_family": "s"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "reptile",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "ritual",
+            "card_family": "s"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "rock",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "sea-serpent",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "spellcaster ",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "thunder",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "warrior",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "winged-beast",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "wyrm",
+            "card_family": "m"
+        }
+    },
+    {
+        "model": "cards.card_subtype",
+        "fields": {
+            "name": "zombie",
+            "card_family": "m"
+        }
+    }
+]

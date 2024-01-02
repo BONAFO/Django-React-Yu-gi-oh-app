@@ -1,0 +1,26 @@
+[
+    {
+        "model": "cards.card_rarity",
+        "fields": {
+            "name": "n"
+        }
+    },
+    {
+        "model": "cards.card_rarity",
+        "fields": {
+            "name": "r"
+        }
+    },
+    {
+        "model": "cards.card_rarity",
+        "fields": {
+            "name": "sr"
+        }
+    },
+    {
+        "model": "cards.card_rarity",
+        "fields": {
+            "name": "ur"
+        }
+    }
+]
