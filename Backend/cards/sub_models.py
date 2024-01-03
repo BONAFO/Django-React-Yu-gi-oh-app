@@ -32,6 +32,7 @@ class Card_Type(models.Model):
         max_length=80, null=False, unique=False, verbose_name="Card Type"
     )
 
+    
     class Meta:
         db_table = "api_cards_types"
         verbose_name = "api_cards_type"

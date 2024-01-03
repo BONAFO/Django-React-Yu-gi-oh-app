@@ -66,14 +66,14 @@
         "model": "cards.card_type",
         "pk": 10,
         "fields": {
-            "name": "spell"
+            "name": "s"
         }
     },
     {
         "model": "cards.card_type",
         "pk": 11,
         "fields": {
-            "name": "trap"
+            "name": "t"
         }
     }
 ]

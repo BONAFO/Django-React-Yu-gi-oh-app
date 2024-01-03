@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from cards.forms import Create_Monster_Card_Form, Create_Spellcard_Card_Form, Create_Trap_Card_Form
 
 # Create your views here.
 
@@ -21,7 +22,22 @@ from rest_framework.views import APIView
 #         return Response({"fields": fields})
 
 
-def GetAttributes_View(require):
+def Get_Cards_Form(request, type):
+    if type == "monster":
+        data = Create_Monster_Card_Form()
+    elif type == "spellcard":
+        data = Create_Spellcard_Card_Form()
+    elif type == "trap":
+        data = Create_Trap_Card_Form()
+    else:
+        return JsonResponse(
+            {"err": "Card type doesn't exist!"}, status=status.HTTP_200_OK
+        )
+
+    return JsonResponse({"data": data}, status=status.HTTP_200_OK)
+
+
+def GetAttributes_View(require, id=None):
     try:
         attributes = Card_Attribute.objects.all()
         attributes_list = []

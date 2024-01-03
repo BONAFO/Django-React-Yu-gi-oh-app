@@ -24,7 +24,7 @@
         "model": "cards.card_subtype",
         "fields": {
             "name": "continuous",
-            "card_family": "s"
+            "card_family": "st"
         }
     },
     {

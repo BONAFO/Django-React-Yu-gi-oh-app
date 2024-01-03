@@ -13,6 +13,10 @@ class Cards(models.Model):
     stars = models.CharField(
         max_length=2, null=True, unique=False, default="", verbose_name="Stars"
     )
+    
+    allowed = models.CharField(
+        max_length=1, null=True, unique=False, default="", verbose_name="Ammount Allowed"
+    )
     # DARK, WATER
     #     attribute = models.CharField(
     #         max_length=32,
