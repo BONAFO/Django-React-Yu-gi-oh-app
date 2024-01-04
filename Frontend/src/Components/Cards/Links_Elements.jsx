@@ -18,9 +18,9 @@ function LinkUI() {
         <div>
             <label id="" className="" htmlFor="">LINK RANK</label>
             <br />
-            <select 
-             {...register('pendulum_scales')}
-            id="">
+            <select
+                name="card_link"
+                id="">
                 {create_numeric_options(1, 8)}
             </select>
             <br />

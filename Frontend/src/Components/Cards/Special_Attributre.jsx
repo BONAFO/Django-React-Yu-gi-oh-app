@@ -15,7 +15,7 @@ export default function Special_Attribute({ data, name, label, cb = () => { } })
                 <label id="" className="" required htmlFor="">{label}</label>
                 <br />
                 <select 
-                {...register(name)}
+                name={name}
                 onChange={(e) => { cb(e) }} id="">
                     {data.map(d => <option value={d.id}>{d.name.toUpperCase()}</option>)}
                 </select>

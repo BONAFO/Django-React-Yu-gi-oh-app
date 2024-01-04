@@ -19,17 +19,16 @@ function PendullumUI() {
         <div>
             <label id="" className="" htmlFor="">SCALE</label>
             <br />
-            <select {...register('pendulum_scales')} id="">
+            <select id="" required name='pendulum_scales'>
                 {create_numeric_options(1, 12)}
             </select>
-            {errors.pendulum_scales && <p>Error. All Pendullum Card must have Scales. </p>}
             <br />
         </div>
 
         <div>
             <label id="" className="" htmlFor="">PENDULLUM DESCRIPTION</label>
             <br />
-            <textarea {...register('card_pendulum_description')} type="text" id="" className="" placeholder="Card Description" />
+            <textarea name="card_pendulum_description" type="text" id="" className="" placeholder="Card Description" />
             {/* {errors.card_pendulum_description && <p>Error. Your musk</p>} */}
             <br />
         </div>
