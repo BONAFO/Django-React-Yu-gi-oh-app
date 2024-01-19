@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from cards.models import Cards
+from cards.serialaizer import CardSerializer
 from resorces.array import push
 from cards.sub_models import Card_Attribute
 from resorces.models_functions import get_model_field
@@ -7,7 +8,13 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from cards.forms import Create_Monster_Card_Form, Create_Spellcard_Card_Form, Create_Trap_Card_Form
+from cards.forms import (
+    Create_Monster_Card_Form,
+    Create_Spellcard_Card_Form,
+    Create_Trap_Card_Form,
+)
+from auth.validate_user_perms import user_call_validation
+from resorces.array import push
 
 # Create your views here.
 
@@ -23,6 +30,17 @@ from cards.forms import Create_Monster_Card_Form, Create_Spellcard_Card_Form, Cr
 
 
 def Get_Cards_Form(request, type):
+    
+    try:
+        user_call_validation(request=request, perm="cards.add_cards")
+    except Exception as error:
+      print(error)
+      return JsonResponse(
+           {"error": "Token invalido o expirado."},
+          status=status.HTTP_403_FORBIDDEN,
+      ) 
+      
+    
     if type == "monster":
         data = Create_Monster_Card_Form()
     elif type == "spellcard":
@@ -57,3 +75,56 @@ class Cards_View_Common(APIView):
 class Cards_View_Particular(APIView):
     def get(self, request, *args, **kwargs):
         return Response({})
+
+
+class Cards_Create_View(APIView):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            user_call_validation(request=request, perm="cards.add_cards")
+        except Exception as error:
+          print(error)
+          return Response(
+               {"error": "Token invalido o expirado."},
+              status=status.HTTP_403_FORBIDDEN,
+          ) 
+          
+        serializer = CardSerializer(data=request.data)
+        
+        if not serializer.is_valid():
+            print(serializer.errors)
+            return Response(
+                {"error": serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        
+        
+        try:
+            serializer.save()
+        except Exception as exception: 
+            print(exception)
+        return Response({"msj": "Card " + request.data["name"] + " created!"}, status=status.HTTP_201_CREATED)
+
+
+
+    
+    
+
+class Cards_Show_View(APIView):
+    def get(self, request, *args, **kwargs):
+        # max = Cards.objects.all().count()
+        queryset = Cards.objects.all().values("id", "name", "url_img")
+        # serializer = CardSerializer(queryset, many=True)
+        
+        
+        
+        return Response({
+            "max": 10
+            
+            }, status=status.HTTP_200_OK)
+        
+        
+class Cards_Show_Detail_View(APIView):
+    def get(self, request, *args, **kwargs):
+        print(request)  
+        return Response({"data": ""}, status=status.HTTP_201_CREATED)

@@ -8,14 +8,18 @@ class User(AbstractUser):
         verbose_name="Username", null=False, max_length=32, unique=True
     )
     password = models.CharField(
+        max_length=255,
         unique=False,
         null=False,
-        verbose_name="Password",
+        verbose_name="Password"
+
     )
     email = models.CharField(
+        max_length=125,
         unique=True,
         null=False,
-        verbose_name="Email",
+        verbose_name="Email"
+        
     )
     class Meta:
         db_table = "api_users"

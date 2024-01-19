@@ -9,7 +9,6 @@ export default function Home_Routes() {
     return <Routes>
         {/* <Route path="/" exact element={<>{window.location.href = "/home"}</>}/> */}
         <Route path="/home" exact element={<>
-            <User_Is_Logged />
             <Home />
         </>} />
         <Route path="/login" exact element={<><Login></Login></>} />

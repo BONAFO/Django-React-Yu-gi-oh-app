@@ -6,6 +6,7 @@ from .sub_models import Card_Attribute, Card_Rarity, Card_SubType, Card_Type
 class Cards(models.Model):
     # CARD NAME
     name = models.CharField(
+        max_length=128,
         null=False,
         unique=True,
     )
@@ -13,9 +14,13 @@ class Cards(models.Model):
     stars = models.CharField(
         max_length=2, null=True, unique=False, default="", verbose_name="Stars"
     )
-    
+
     allowed = models.CharField(
-        max_length=1, null=True, unique=False, default="", verbose_name="Ammount Allowed"
+        max_length=1,
+        null=True,
+        unique=False,
+        default="",
+        verbose_name="Ammount Allowed",
     )
     # DARK, WATER
     #     attribute = models.CharField(
@@ -28,19 +33,18 @@ class Cards(models.Model):
     #     )
     attribute = models.ForeignKey(
         Card_Attribute,
-        null=False,
+        null=True,
         unique=False,
         default="",
         on_delete=models.DO_NOTHING,
         verbose_name="Card Attribute",
     )
     # YUGIOHDB IMG URL
-    url_img = (
-        models.TextField(
+    url_img = models.TextField(
             null=True,
             unique=False,
             verbose_name="Image URL",
-        ),
+        
     )
     # MONSTER,EXTRA DECK, PENDULUM,SPELL CARD, TRAP CARD
     #     card_type = models.CharField(
@@ -91,7 +95,7 @@ class Cards(models.Model):
     )
     card_atk = models.CharField(
         max_length=20,
-        null=False,
+        null=True,
         unique=False,
         verbose_name="Attack Points",
     )
@@ -109,10 +113,11 @@ class Cards(models.Model):
         verbose_name="Link Rank",
     )
     obtain_method = models.CharField(
+        max_length=128,
         null=True,
         unique=False,
         verbose_name="Obtain Method",
-        default=""
+        default="",
     )
     #     card_rarity = models.CharField(
     #         max_length=10,

@@ -21,7 +21,7 @@ export default function Login() {
             }, 3000);
 
         } catch (error) {
-
+            console.log(error);
             show_default_cursor()
             document.getElementById("submit-btn").disabled = false;
             msj = get_response_code(error.response.status,error.response.data.error)

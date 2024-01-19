@@ -21,15 +21,16 @@ export const validator_dispacher = (data = {}) => {
         case "card_subtype":
         case "card_rarity":
         case "card_type":
-            case "card_link":
-                case "pendulum_scales":
-                case "allowed":
+        case "card_link":
+        case "pendulum_scales":
+        case "allowed":
             
             
             
 
 
         case "stars":
+            
             msj.bool = true;
             msj.data = parseInt(data[Object.keys(data)[0]]);
             break;
@@ -42,7 +43,6 @@ export const validator_dispacher = (data = {}) => {
         case "card_def":
             const validations = validate_atkdef(data[Object.keys(data)[0]]);
             msj.data = validations
-            console.log(!isNaN(validations));
             if (!isNaN(validations) || typeof validations == "string") {
 
                 msj.bool = true;

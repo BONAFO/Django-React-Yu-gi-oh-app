@@ -13,6 +13,7 @@ from users.models import User
 from resorces.user_is_logged import user_is_logged
 from django.core.serializers import serialize
 from resorces.JWT import token_decode, token_sign
+from auth.validate_user_perms import user_call_validation
 
 # from rest_framework import status
 # from rest_framework.decorators import api_view
@@ -157,7 +158,7 @@ from resorces.JWT import token_decode, token_sign
 # return Response(serializer.data)
 
 
-class User_View_Common(APIView):
+class Login_View(APIView):
     def post(self, request, *args, **kwargs):
         # try:
         # queryset = User.objects.filter(username=request.data["username"])
@@ -200,7 +201,7 @@ class User_View_Common(APIView):
     #     )
 
 
-class User_View_Create(APIView):
+class SignUp_View(APIView):
     def post(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data)
         if not serializer.is_valid():
@@ -286,4 +287,19 @@ class home_view(APIView):
         headers = self.get_success_headers(serializer.data)
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
+
+
+class User_Perms_Validation_Perms(APIView):
+    def get(self, request, id, *args, **kwargs):
+        try:
+            user_call_validation(request=request, perm=request.data.perms)
+        except Exception as error:
+          print(error)
+          return Response(
+               {"error": "Token invalido o expirado."},
+              status=status.HTTP_403_FORBIDDEN,
+          ) 
+        return Response(
+            {"bool": True}, status=status.HTTP_200_OK
         )

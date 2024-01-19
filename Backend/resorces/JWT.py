@@ -19,3 +19,17 @@ def token_decode(token):
     except Exception as error:
         print(error)
         return False
+
+def clean_token(token):
+    token = token.replace("Bearer", "")
+    token = token.strip()
+    return token
+
+
+def validate_user_token(token):
+    token = clean_token(token=token)
+    user = token_decode(token=token)
+    if user != False:
+        return user
+    else: 
+        raise Exception("Token Invalido > [" + token + "]")

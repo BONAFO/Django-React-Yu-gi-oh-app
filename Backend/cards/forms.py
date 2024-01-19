@@ -26,10 +26,13 @@ def Create_Monster_Card_Form():
 def Create_Spellcard_Card_Form():
     race_card = Card_SubType.objects.filter(card_family__startswith="s")
     rarity_card = Card_Rarity.objects.all()
-
+    type_card = Card_Type.objects.filter(
+        Q(name="s")
+    )
     data = {
         "race": queryset_to_arr(race_card),
         "rarity": queryset_to_arr(rarity_card),
+        "type": queryset_to_arr(type_card),
     }
     # Title.object  s.filter(id__startswith='12345')
 
@@ -40,10 +43,13 @@ def Create_Spellcard_Card_Form():
 def Create_Trap_Card_Form():
     race_card = Card_SubType.objects.filter(Q(card_family__icontains="t"))
     rarity_card = Card_Rarity.objects.all()
-
+    type_card = Card_Type.objects.filter(
+        Q(name="t")
+    )
     data = {
         "race": queryset_to_arr(race_card),
         "rarity": queryset_to_arr(rarity_card),
+        "type": queryset_to_arr(type_card),
     }
     # Title.object  s.filter(id__startswith='12345')
 
