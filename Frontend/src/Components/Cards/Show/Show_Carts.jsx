@@ -7,11 +7,12 @@ let paginated_by = 10
 export default function Show_Carts() {
 
     const [paginate_reload, setPaginated_reload] = useState(false)
+    const [actual_page, setActual_page] = useState(1)
     
-
-    console.log(paginated_by);
+    
     useEffect(() => {
-        get_cards()
+        let queries = [`paginated=${paginated_by}`, `page=${actual_page -1 }`]
+        get_cards(queries)
     }, [])
     return <div>
         <select name="paginated" onChange={(e) => {

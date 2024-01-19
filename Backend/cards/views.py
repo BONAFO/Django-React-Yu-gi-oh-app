@@ -113,14 +113,17 @@ class Cards_Create_View(APIView):
 class Cards_Show_View(APIView):
     def get(self, request, *args, **kwargs):
         # max = Cards.objects.all().count()
-        queryset = Cards.objects.all().values("id", "name", "url_img")
-        # serializer = CardSerializer(queryset, many=True)
-        
-        
-        
+        queryset = Cards.objects.all().values("id", "name", "url_img", "attribute")
+        serializer = CardSerializer(queryset, many=True)
+        paginated = int(request.GET.get("paginated")) or 10
+        page = int(request.GET.get("page")) or 0
+        pair = [paginated * page, paginated * (page + 1)]
+   
+        data = queryset[pair[0] : pair[1]]
+       
         return Response({
-            "max": 10
-            
+            "max": queryset.count(),
+            "data": data
             }, status=status.HTTP_200_OK)
         
         
