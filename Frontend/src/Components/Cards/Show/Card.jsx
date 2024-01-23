@@ -1,0 +1,40 @@
+
+import { build_icon } from "../../../Controllers/Cards/Show/api-icons";
+import "../../../styles/Cards/manifiest.css"
+import { useResponsiveContext } from "../../../Context/IsMobile";
+export default function Card({ card_data }) {
+
+    const respo = useResponsiveContext()
+
+    return (
+        <div className={`card-frame-${respo}`}>
+            <h2 className={`card-name-${respo}`}>{card_data.name}</h2>
+            <img src={card_data.url_img} className={`card-img-${respo}`} alt="" />
+            <br />
+            <div className={`r1-stats-${respo}`}>
+                <div className={`data-frame-${respo}`} style={{ width: (respo == "desk") ? ("40%") : ("40%") }}>
+                    <img src="https://ygoprodeck.com/wp-content/uploads/2017/01/level.png" className={`star-img-${respo}`} alt="" />
+                    <h3 style={{ marginLeft: (respo == "desk") ? ("18%") : ("18%") }} className={`star-txt-${respo}`}>{card_data.stars}</h3>
+                </div>
+                <div className={`data-frame-${respo}`} style={{ width: (respo == "desk") ? ("30%") : ("30%") }}>
+                    <img src={build_icon({ label: card_data.card_subtype.name, type_icon: "race" })} className={`star-img-${respo}`} alt="" />
+                    {/* <h3 style={{marginLeft: "7%"}} className="star-txt">{card_data.stars}</h3> */}
+                </div>
+                <div className={`data-frame-${respo}`} style={{ width: (respo == "desk") ? ("30%") : ("30%") }}>
+                    <img src={build_icon({ label: card_data.attribute.name, type_icon: "attr" })} className={`star-img-${respo}`} alt="" />
+                    {/* <h3 style={{marginLeft: "7%"}} className="star-txt">{card_data.stars}</h3> */}
+                </div>
+                <br />
+                <div className={`data-frame r2-stats-${respo}`}>
+                <i className={`icon-points-${respo}`}>  ⚔︎  </i>
+                    <h3 className={`stat-txt-${respo}  points-txt-${respo}`} style={{ marginLeft: (respo == "desk") ? ("7%") : ("7%"), width: (respo == "desk") ? ("100%") : ("100%") }}>{card_data.card_atk}</h3>
+                </div>
+                <br />
+                <div className={`data-frame r2-stats-${respo}`} >
+                    <i className={`icon-points-${respo}`}>  ⛉  </i>
+                    <h3 className={`stat-txt-${respo} points-txt-${respo}`} style={{ marginLeft: (respo == "desk") ? ("5%") : ("5%") }}>{card_data.card_def}</h3>
+                </div>
+            </div>
+        </div>
+    );
+}

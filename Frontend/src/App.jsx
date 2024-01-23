@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { BrowserRouter, redirect } from "react-router-dom";
 import Home_Routes from "./Routes/home.routes";
 import Cards_Routes from "./Routes/cards.routes";
+import CreateResponseContextProvider from "./Context/IsMobile";
 
 // http://localhost:4000/api/v1/users/
 
@@ -48,8 +49,8 @@ export const redirect_to = ({ from, to }) => {
         if (window.location.pathname === from) {
             window.location.href = to;
         }
-    }else{
-        window.location.href =window.origin + to;
+    } else {
+        window.location.href = window.origin + to;
     }
 }
 
@@ -67,10 +68,12 @@ export default function App() {
 
     return <div>
         <div id="subbody"></div>
-        <BrowserRouter>
-            <Home_Routes></Home_Routes>
-            <Cards_Routes></Cards_Routes>
-        </BrowserRouter>
+        <CreateResponseContextProvider>
+            <BrowserRouter>
+                <Home_Routes></Home_Routes>
+                <Cards_Routes></Cards_Routes>
+            </BrowserRouter>
+        </CreateResponseContextProvider>
     </div>
 }
 

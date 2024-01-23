@@ -15,5 +15,5 @@ export const get_cards =async (queries)=>{
           },
     });
 
-    console.log(response);
+    return response.data
 }   

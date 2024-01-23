@@ -1,0 +1,38 @@
+.card-img-desk{
+    width: 70%;
+ 
+}
+
+.card-frame-desk{
+    display: inline-block;
+    margin: 1%;
+    max-width: 300px;
+    border: 2px solid black;
+    text-align: center;
+    padding: 0% 0% 5% 0%;
+}
+
+.data-frame-desk{
+    display: inline-table; 
+
+}
+.star-img-desk{
+    width: 25px ;
+}
+
+.star-txt-desk{
+    display: inline;
+    font-size: 30px;
+}
+
+
+
+.stat-txt-desk{
+    display: inline;
+    font-size: 20px;
+}
+
+.card-name-desk{
+    font-size: 3vh;
+}
+

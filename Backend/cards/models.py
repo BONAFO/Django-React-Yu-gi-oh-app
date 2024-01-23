@@ -41,10 +41,9 @@ class Cards(models.Model):
     )
     # YUGIOHDB IMG URL
     url_img = models.TextField(
-            null=True,
-            unique=False,
-            verbose_name="Image URL",
-        
+        null=True,
+        unique=False,
+        verbose_name="Image URL",
     )
     # MONSTER,EXTRA DECK, PENDULUM,SPELL CARD, TRAP CARD
     #     card_type = models.CharField(
@@ -112,8 +111,7 @@ class Cards(models.Model):
         unique=False,
         verbose_name="Link Rank",
     )
-    obtain_method = models.CharField(
-        max_length=128,
+    obtain_method = models.TextField(
         null=True,
         unique=False,
         verbose_name="Obtain Method",

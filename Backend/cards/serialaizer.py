@@ -3,17 +3,54 @@ from .models import Cards
 from .sub_models import Card_Attribute
 
 
+
 class Card_AttributeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card_Attribute
         # fields = ["name"]
-        fields = "__all__"
+        fields = ("id", "name")
 
-class CardSerializer(serializers.ModelSerializer):
+        
+        
+        
+class Card_Type(serializers.ModelSerializer):
+    class Meta:
+        model = Card_Attribute
+        # fields = ["name"]
+        fields = ("id", "name")
+        
+        
+class Card_Subtype(serializers.ModelSerializer):
+    class Meta:
+        model = Card_Attribute
+        # fields = ["name"]
+        fields = ("id", "name")
+
+class Card_Rarity(serializers.ModelSerializer):
+    class Meta:
+        model = Card_Attribute
+        # fields = ["name"]
+        fields = ("id", "name")
+        
+
+class CardSerializerGet(serializers.ModelSerializer):
     attribute = Card_AttributeSerializer()
+    card_type = Card_Type()
+    card_subtype = Card_Subtype()
+    card_rarity = Card_Rarity()
+    # card_type = Card_AttributeSerializer()
+    # card_subtype = 
     class Meta:
         model = Cards
         fields = "__all__"
+
+class CardSerializerSet(serializers.ModelSerializer):
+    class Meta:
+        model = Cards
+        fields = "__all__"
+
+
+
 
 
 
