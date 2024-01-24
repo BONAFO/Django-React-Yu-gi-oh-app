@@ -41,26 +41,31 @@ const race_icons = [
 export const build_icon = ({ label, type_icon }) => {
   //   return base.replace("{ICON}", icons[i]);
 
-  if (type_icon == "race") {
-    const i = race_icons.filter(
-      (icon) =>
-        icon.toLowerCase().replaceAll("-", "").replaceAll(" ", "") ===
-        label.toLowerCase().replaceAll("-", "").replaceAll(" ", "")
-    )[0];
-   if(i !== undefined){
-     return race_uri.replace("{ICON}", i);
-   }
-  } else if (type_icon == "attr") {
 
-    const i = attr_icons.filter(
-      (icon) =>
-        icon.toLowerCase().replaceAll("-", "").replaceAll(" ", "") ===
-        label.toLowerCase().replaceAll("-", "").replaceAll(" ", "")
-    )[0];
-   if(i !== undefined){
-
-     return attr_uri.replace("{ICON}", i.toUpperCase());
-   }
+  
+  if(label !== undefined){
+    label = label.name
+    if (type_icon == "race") {
+      const i = race_icons.filter(
+        (icon) =>
+          icon.toLowerCase().replaceAll("-", "").replaceAll(" ", "") ===
+          label.toLowerCase().replaceAll("-", "").replaceAll(" ", "")
+      )[0];
+     if(i !== undefined){
+       return race_uri.replace("{ICON}", i);
+     }
+    } else if (type_icon == "attr") {
+  
+      const i = attr_icons.filter(
+        (icon) =>
+          icon.toLowerCase().replaceAll("-", "").replaceAll(" ", "") ===
+          label.toLowerCase().replaceAll("-", "").replaceAll(" ", "")
+      )[0];
+     if(i !== undefined){
+  
+       return attr_uri.replace("{ICON}", i.toUpperCase());
+     }
+    } 
   }
 };
 

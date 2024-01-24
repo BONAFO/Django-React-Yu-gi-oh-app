@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from cards.models import Cards
 from cards.serialaizer import CardSerializerSet, CardSerializerGet
 from resorces.array import push
-from cards.sub_models import Card_Attribute
+from cards.sub_models import Card_Attribute, Card_Rarity, Card_SubType, Card_Type
 from resorces.models_functions import get_model_field
 from rest_framework import status
 from rest_framework import viewsets
@@ -13,8 +13,9 @@ from cards.forms import (
     Create_Spellcard_Card_Form,
     Create_Trap_Card_Form,
 )
+
 from auth.validate_user_perms import user_call_validation
-from resorces.array import push
+from resorces.array import push, queryset_to_arr
 
 # Create your views here.
 
@@ -109,15 +110,11 @@ class Cards_Create_View(APIView):
 class Cards_Show_View(APIView):
     def get(self, request, *args, **kwargs):
         # max = Cards.objects.all().count()
-        
-
 
         paginated = int(request.GET.get("paginated")) or 10
         page = int(request.GET.get("page")) or 0
         pair = [paginated * page, paginated * (page + 1)]
-        
-        
-        
+
         queryset = Cards.objects.all()
         query = queryset[pair[0] : pair[1]]
         serializer = CardSerializerGet(query, many=True)
@@ -173,93 +170,19 @@ def unpack_values(pack, key):
     return data
 
 
-# datilla = [
-#     (
-#         [
-#             ("id", 4),
-#             ("attribute", ([("id", 6), ("name", "light")])),
-#             ("card_type", ([("id", 4), ("name", "m-tunner")])),
-#             ("card_subtype", ([("id", 28), ("name", "spellcaster ")])),
-#             ("card_rarity", ([("id", 2), ("name", "r")])),
-#             ("name", "Priestess With Eyes Of Blue"),
-#             ("stars", "1"),
-#             ("allowed", "3"),
-#             ("url_img", "https://images.ygoprodeck.com/images/cards/36734924.jpg"),
-#             ("card_pendulum_description", None),
-#             ("card_atk", "0"),
-#             ("card_def", "0"),
-#             ("card_link", None),
-#             (
-#                 "obtain_method",
-#                 "Pack Stardust Acceleration [R] , Pack Blue-Eyes Evolution [R]",
-#             ),
-#             ("pendulum_scales", ""),
-#         ]
-#     ),
-#     (
-#         [
-#             ("id", 5),
-#             ("attribute", ([("id", 6), ("name", "light")])),
-#             ("card_type", ([("id", 6), ("name", "e-syncro")])),
-#             ("card_subtype", ([("id", 11), ("name", "dragon")])),
-#             ("card_rarity", ([("id", 4), ("name", "ur")])),
-#             ("name", "Blue-Eyes Spirit Dragon"),
-#             ("stars", "9"),
-#             ("allowed", "3"),
-#             (
-#                 "url_img",
-#                 "https://s3.duellinksmeta.com/cards/60c2b3a9a0e24f2d54a51791_w360.webp",
-#             ),
-#             ("card_pendulum_description", None),
-#             ("card_atk", "2500"),
-#             ("card_def", "3000"),
-#             ("card_link", None),
-#             ("obtain_method", "Box Judgement Force"),
-#             ("pendulum_scales", ""),
-#         ]
-#     ),
-#     (
-#         [
-#             ("id", 6),
-#             ("attribute", None),
-#             ("card_type", ([("id", 11), ("name", "t")])),
-#             ("card_subtype", ([("id", 10), ("name", "normal")])),
-#             ("card_rarity", ([("id", 3), ("name", "sr")])),
-#             ("name", "Destined Rivals"),
-#             ("stars", ""),
-#             ("allowed", "3"),
-#             (
-#                 "url_img",
-#                 "https://s3.duellinksmeta.com/cards/60c2b3aaa0e24f2d54a51d16_w360.webp",
-#             ),
-#             ("card_pendulum_description", None),
-#             ("card_atk", None),
-#             ("card_def", None),
-#             ("card_link", None),
-#             ("obtain_method", "Deck Sword of Paladin"),
-#             ("pendulum_scales", ""),
-#         ]
-#     ),
-#     (
-#         [
-#             ("id", 7),
-#             ("attribute", None),
-#             ("card_type", ([("id", 10), ("name", "s")])),
-#             ("card_subtype", ([("id", 25), ("name", "ritual")])),
-#             ("card_rarity", ([("id", 2), ("name", "r")])),
-#             ("name", "Chaos Form"),
-#             ("stars", ""),
-#             ("allowed", "1"),
-#             (
-#                 "url_img",
-#                 "https://s3.duellinksmeta.com/cards/60c2b3aaa0e24f2d54a5191a_w360.webp",
-#             ),
-#             ("card_pendulum_description", None),
-#             ("card_atk", None),
-#             ("card_def", None),
-#             ("card_link", None),
-#             ("obtain_method", "Deck Masters of Chaos, Box World of Barian"),
-#             ("pendulum_scales", ""),
-#         ]
-#     ),
-# ]
+class Card_Params_View(APIView):
+    def get(self, request, *args, **kwargs):
+        attributes = queryset_to_arr(Card_Attribute.objects.all().values("id", "name"))
+        rarity = queryset_to_arr(Card_Rarity.objects.all().values("id", "name"))
+        sub_type = queryset_to_arr(Card_SubType.objects.all().values("id", "name"))
+        type = queryset_to_arr(Card_Type.objects.all().values("id", "name"))
+
+        return JsonResponse(
+            {
+                "attributes": attributes,
+                "rarity": rarity,
+                "sub_type": sub_type,
+                "type": type,
+            },
+            status=200,
+        )

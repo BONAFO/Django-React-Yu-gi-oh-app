@@ -24,6 +24,7 @@ from .views import (
     Cards_Create_View,
     Cards_Show_View,
     Cards_Show_Detail_View,
+     Card_Params_View
 )
 
 
@@ -36,4 +37,5 @@ urlpatterns = [
     path("<int:id>", Cards_View_Particular.as_view()),
     path("show/", Cards_Show_View.as_view()),
     path("create/<int:id>", Cards_Show_Detail_View.as_view()),
+    path("filter-params/", Card_Params_View.as_view()),
 ]

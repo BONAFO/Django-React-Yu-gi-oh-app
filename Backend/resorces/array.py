@@ -4,8 +4,14 @@ def push(arr, element):
     return arr
 
 
+# def queryset_to_arr(queryset):
+#     new_list = []
+#     for v in queryset.values():
+#         push(new_list, v)
+#     return new_list
+
 def queryset_to_arr(queryset):
     new_list = []
-    for v in queryset.values():
+    for v in queryset:
         push(new_list, v)
     return new_list

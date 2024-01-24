@@ -1,19 +1,21 @@
 .card-img-desk{
-    width: 70%;
+    width: 30vh;
  
 }
 
 .card-frame-desk{
-    display: inline-block;
-    margin: 1%;
-    max-width: 300px;
+
+    display: inline-table;
+    margin: 1% 1%;
+    width: 400px;
+    height: 80vh;
     border: 2px solid black;
     text-align: center;
     padding: 0% 0% 5% 0%;
 }
 
 .data-frame-desk{
-    display: inline-table; 
+    display: inline-block; 
 
 }
 .star-img-desk{

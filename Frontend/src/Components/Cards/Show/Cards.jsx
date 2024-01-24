@@ -9,8 +9,8 @@ const build_cards = (cards) => {
 
         const elements =[]
         for (let i = 0; i < cards.length - 1; i++) {
-            console.log(cards[i].name);
-            elements.push(<Card key={cards[i].id} card_data={cards[i]}></Card>)
+
+            elements.push(<Card card_data={cards[i]}></Card>)
             
         }
         return <div>
