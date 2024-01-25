@@ -8,7 +8,7 @@ const build_cards = (cards) => {
     const build_cards_elements =()=>{
 
         const elements =[]
-        for (let i = 0; i < cards.length - 1; i++) {
+        for (let i = 0; i <= cards.length - 1; i++) {
 
             elements.push(<Card card_data={cards[i]}></Card>)
             
@@ -21,14 +21,9 @@ const build_cards = (cards) => {
     if (Array.isArray(cards)) {
 
 
-        return <div>
+        return <div style={{margin: "0% 8%"}}>
 
             {build_cards_elements()}
-{/*                         
-            {cards.map(card => {
-                return <Card key={card.id} card_data={card}></Card>
-            })}
-     */}
         </div>
 
    

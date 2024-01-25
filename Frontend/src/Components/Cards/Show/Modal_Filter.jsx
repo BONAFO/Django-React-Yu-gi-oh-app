@@ -1,128 +1,119 @@
 
+import Filters_Container from "./Filters_Container";
+import FilterContextProvider from "./Context/Filter";
+import CardTypeFilterContextProvider from "./Context/Type_Card_Filter";
+import CardParamsContextProvider from "./Context/Cards_Params";
 
+const clear_filters = (filters) => {
+    const spells_trap_id = [
+        get_id_by_filter("Spell", params.type),
+        get_id_by_filter("Trap", params.type),
+    ];
+    const special_monster = [
+        get_id_by_filter("Monster Link", params.type),
+        get_id_by_filter("Monster Pendullum", params.type),
+    ];
 
-const create_number_options = (min, max) => {
-    const elements = []
-    for (let i = min; i <= max; i++) {
-        if (i != 0) {
-            if (i == -1) {
-                elements.push(<option value={i}>{"Any"}</option>)
-            } else {
-                elements.push(<option value={i}>{i}</option>)
-            }
-        }
+    // if(filters.card_type != undefined){
+    //     if(spells_trap_id.indexOf(parseInt(filters.card_type))){
 
+    //     }else if(spells_trap_id.indexOf(parseInt(filters.card_type))){
+
+    //     }else if(spells_trap_id){
+
+    //     }else{
+
+    //     }
+    // }
+
+    // Spell Card
+    if (spells_trap_id[0] == filters.card_type) {
+    } else if (spells_trap_id[1] == filters.card_type) {
+        console.log(2);
+    } else if (special_monster[0] == filters.card_type) {
+        console.log(3);
+    } else if (special_monster[1] == filters.card_type) {
+        console.log(4);
+    } else {
+        console.log(5);
     }
-    return elements
-}
-
-const capitalizate =(element)=>{
-
-
-
-    let newWord = "";
-    element.split(" ").map(word => {
-        try {
-            newWord += word[0].toUpperCase() + word.substring(1, word.length) + " "
-        } catch (error) {
-            
-        }
-    })
-
-    newWord = newWord.trim()
-    return newWord
-}
-
-const card_type_traslate =(element)=>{
-
-    element.name = element.name.replace("m-", "monster ")
-    element.name = element.name.replace("e-", "extra deck monster ")
-    if(element.name == "t"){element.name = "trap"}
-   
-    if(element.name == "s"){element.name = "spell"}
-    
-
-    element.name = capitalizate(element.name)
-    return <option value={element.id}>{element.name}</option>
-}
-
-
-const create_arr_options = (arr, cb) => {
-    const elements = []
-    arr.sort()
-    for (let i = 0; i < arr.length; i++) {
-
-        if(cb !== undefined){
-            elements.push(cb(arr[i]))
-        }else{
-            elements.push(<option value={arr[i].id}>{capitalizate(arr[i].name)}</option>)
-        }
-
-        // if (i != 0) {
-        //     if (i == -1) {
-        //         elements.push(<option value={i}>{"Any"}</option>)
-        //     } else {
-        //         elements.push(<option value={i}>{i}</option>)
-        //     }
-        // }
-
-    }
-    return elements
-}
+};
 
 export default function Modal_Filter({ setModal, params }) {
+    const filters = {};
+
+    const mod_filters = ({ param, extras = {} }) => {
+        switch (param) {
+            case "add":
+                break;
+
+            case "delete":
+                break;
+
+            case "update":
+                break;
+
+            case "get":
+                break;
+        }
+    };
+
+    const get_id_by_filter = (name, arr) => {
+        let id = arr.filter((ar) => ar.name == name)[0];
+        if (id == undefined) {
+            return -1;
+        } else {
+            return id.id;
+        }
+    };
+
+    return (
+        <div className="modal-cont">
+            <button
+                onClick={async () => {
+                    setModal("");
+                }}
+            >
+                X
+            </button>
+
+            <div>
+                <div style={{ color: "white" }}>
+
+                <CardParamsContextProvider params={params}>
+                <CardTypeFilterContextProvider>
+                        <FilterContextProvider filter={filters} mod_filter={mod_filters}>
+                            <Filters_Container></Filters_Container>
+                        </FilterContextProvider>
+                    </CardTypeFilterContextProvider>
+                </CardParamsContextProvider>
 
 
-    return <div className="modal-cont">
-        <button onClick={async () => { setModal("") }}>X</button>
+                    <br />
 
 
-        <div>
-            <div style={{ color: "white" }}>
-                <label htmlFor="">Min Starts/Ranks</label>
-                <select name="level_min" id="">
-                    {create_number_options(-1, 12)}
-                </select>
-                <label htmlFor="">Max Starts/Ranks</label>
-                <select name="level_max" id="">
-                    {create_number_options(-1, 12)}
-                </select>
-                <label htmlFor="">Allowed</label>
-                <select name="allowed" id="">
-                    {create_number_options(-1, 3)}
-                </select>
 
-
-                <br />
-                <label htmlFor="">Link Rank</label>
-                <select name="allowed" id="">
-                    {create_number_options(-1, 6)}
-                </select>
-                <label htmlFor="">Pendulum Scale</label>
-                <select name="allowed" id="">
-                    {create_number_options(-1, 12)}
-                </select>
-                <label htmlFor="">Rarity</label>
-                <select name="allowed" id="">
-                    {create_arr_options(params.rarity)}
-                </select>
-                <br />
-                <label htmlFor="">Attribute</label>
-                <select name="allowed" id="">
-                    {create_arr_options(params.attributes)}
-                </select>
-                <label htmlFor="">Card type</label>
-                <select name="type" id="">
-                    {create_arr_options(params.type, card_type_traslate)}
-                </select>
-                <label htmlFor="">Card Race</label>
-                <select name="race" id="">
-                    {create_arr_options(params.sub_type)}
-                </select>
-                {/*             
+                    <button
+                        onClick={() => {
+                            clear_filters(filters);
+                        }}
+                    >
+                        APPLY FILTERS
+                    </button>
+                    <button
+                        onClick={async () => {
+                            setModal("");
+                        }}
+                    >
+                        CANCEL
+                    </button>
+                    {/*             
                 <input type="number" placeholder="Min Starts/Ranks" />
                 <input type="number" placeholder="Max Starts/Ranks" /> */}
+                </div>
             </div>
         </div>
-    </div>
+    );
 }
+// const spells_trap_id = [get_id_by_filter("Spell", params.type), get_id_by_filter("Trap", params.type)];
+// const special_monster = [get_id_by_filter("Monster Link", params.type), get_id_by_filter("Monster Pendullum", params.type)];

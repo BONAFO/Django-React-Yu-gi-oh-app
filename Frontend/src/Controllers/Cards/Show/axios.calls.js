@@ -7,7 +7,6 @@ export const get_cards =async (queries)=>{
         q += query + "&"
     })
 
-    console.log(process.env.REACT_APP_SERVER_PROD + "cards/show" + q);
     const response = await axios.get(process.env.REACT_APP_SERVER_PROD + "cards/show" + q, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
