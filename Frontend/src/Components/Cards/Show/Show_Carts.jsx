@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom"
 import Cards_Sort from "./Sort"
 import Paginator from "./Paginator"
 import QueryPageContextProvider from "./Context/Queries"
+import { get_queries } from "./Controllers/Traslate_query"
 
 
 
@@ -21,15 +22,20 @@ import QueryPageContextProvider from "./Context/Queries"
 
 
 
+
+
+
+
+
 export const build_url = (queries) => {
 
     let q = "?"
 
     queries.map((query, i) => {
-        (i != queries.length -1 ) ? (q += query + "&") : (q += query)
+        (i != queries.length - 1) ? (q += query + "&") : (q += query)
     })
 
-    return window.location.origin+window.location.pathname  + q;
+    return window.location.origin + window.location.pathname + q;
 }
 
 
@@ -39,18 +45,23 @@ export default function Show_Carts() {
     // const [actual_page, setActual_page] = useState(1)
 
 
-//    const queries_keys_page = {
-//         paginated: 10,
-//         page: 0
-//     };
-    
+    //    const queries_keys_page = {
+    //         paginated: 10,
+    //         page: 0
+    //     };
+
     const [cards, setCards] = useState("")
     const [maxPages, setMaxPages] = useState(0)
     const [searchParams, setSearchParams] = useSearchParams();
-    const [queries_keys_page, setQueries_keys_page] = useState({
-        paginated: searchParams.get("paginated") || 10,
-        page: searchParams.get("page") || 0
-    });
+    // ARR WITH ALL THE POSIBLES QUERIES KEY
+    // const [queries_keys_page, setQueries_keys_page] = useState({
+    //     paginated: searchParams.get("paginated") || 10,
+    //     page: searchParams.get("page") || 0,
+    //     order_by : searchParams.get("order_by") || undefined,
+    // });
+
+    const [queries_keys_page, setQueries_keys_page] = useState(get_queries());
+
     // const update_cards = () => {
 
     //     get_cards(queries).then(res => setCards(<Cards cards={res.data}></Cards>)).catch(err => console.log(err))
@@ -63,11 +74,12 @@ export default function Show_Carts() {
 
 
 
-        
+        console.log(queries_keys_page);
 
         Object.keys(queries_keys_page).map(key => {
             queries.push(`${key}=${searchParams.get(key) || queries_keys_page[key]}`)
         })
+
 
         // let queries = [`paginated=${paginated_by}`, `page=${actual_page - 1}`]
         get_cards(queries).then(res => {
@@ -77,21 +89,31 @@ export default function Show_Carts() {
             setCards(<Cards cards={res.data}></Cards>)
         }).catch(err => console.log(err))
     }, [])
-    
+
     return <div>
         <div>
             <select name="paginated" value={searchParams.get("paginated") || 10} onChange={(e) => {
                 const queries = []
+
+
+
                 queries_keys_page.paginated = parseInt(e.target.value)
-                queries_keys_page.page = parseInt(0)
                 Object.keys(queries_keys_page).map(key => {
-                    if(key == "paginated" || key == "page"){
+    
+                  if(key != "page"){
                         queries.push(`${key}=${queries_keys_page[key]}`)
-                    }else{
-                        queries.push(`${key}=${searchParams.get(key) || queries_keys_page[key]}`)
                     }
                 })
-               const url = build_url(queries)
+                // queries_keys_page.paginated = parseInt(e.target.value)
+                // queries_keys_page.page = parseInt(0)
+                // Object.keys(queries_keys_page).map(key => {
+                //     if (key == "paginated" || key == "page") {
+                //         queries.push(`${key}=${queries_keys_page[key]}`)
+                //     } else {
+                //         queries.push(`${key}=${searchParams.get(key) || queries_keys_page[key]}`)
+                //     }
+                // })
+                const url = build_url(queries)
                 window.location.href = url
                 // paginated_by = parseInt(e.target.value)
                 // update_cards()
@@ -103,20 +125,23 @@ export default function Show_Carts() {
                 <option value="50">50</option>
 
             </select>
-            <Cards_Sort></Cards_Sort>
-            <Cards_Filter></Cards_Filter>
+            <QueryPageContextProvider queries_keys_page={queries_keys_page} setQueries_keys_page={setQueries_keys_page}>
+                <Cards_Sort></Cards_Sort>
+                <Cards_Filter></Cards_Filter>
+            </QueryPageContextProvider>
+
         </div>
         <br />
 
         {cards}
-    
-    
-    
-    
-    <QueryPageContextProvider queries_keys_page={queries_keys_page} setQueries_keys_page={setQueries_keys_page}>
-    <Paginator maxPages={maxPages}></Paginator>
-    </QueryPageContextProvider>
-        
-            
+
+
+
+
+        <QueryPageContextProvider queries_keys_page={queries_keys_page} setQueries_keys_page={setQueries_keys_page}>
+            <Paginator maxPages={maxPages}></Paginator>
+        </QueryPageContextProvider>
+
+
     </div>
 }

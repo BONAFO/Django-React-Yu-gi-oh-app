@@ -15,12 +15,13 @@ export const create_number_options = (min, max) => {
 };
 
 
-export const create_arr_options = (arr, cb) => {
+export const create_arr_options = ({arr, cb, extra}) => {
     const elements = [];
     arr.sort();
+    elements.push(<option value={-1}>{"Any"}</option>)
     for (let i = 0; i < arr.length; i++) {
         if (cb !== undefined) {
-            elements.push(cb(arr[i]));
+            elements.push(cb(arr[i],extra));
         } else {
             elements.push(
                 <option value={arr[i].id}>{capitalizate(arr[i].name)}</option>

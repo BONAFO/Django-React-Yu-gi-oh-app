@@ -20,11 +20,7 @@ export default function Paginator({ maxPages }) {
                 const queries = []
                 queries_keys_page.page = parseInt(e.nextSelectedPage) || 0
                 Object.keys(queries_keys_page).map(key => {
-                    if(key == "page"){
-                        queries.push(`${key}=${queries_keys_page[key]}`)
-                    }else{
-                        queries.push(`${key}=${searchParams.get(key) || queries_keys_page[key]}`)
-                    }
+                    queries.push(`${key}=${queries_keys_page[key]}`)
                 })
 
                 const url = build_url(queries)

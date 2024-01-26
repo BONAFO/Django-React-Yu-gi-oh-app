@@ -14,7 +14,6 @@ const QueryPageContextProvider = ({ children, queries_keys_page, setQueries_keys
     // //     page: searchParams.get("page") || 0
     // // });
 
-
     return <queryPageContext.Provider value={{ queries_keys_page: queries_keys_page, setQueries_keys_page: setQueries_keys_page }}>{children}</queryPageContext.Provider>
 }
 
