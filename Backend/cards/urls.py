@@ -16,26 +16,37 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import (
-    Cards_View_Common,
-    Cards_View_Particular,
-    GetAttributes_View,
-    Get_Cards_Form,
-    Cards_Create_View,
-    Cards_Show_View,
-    Cards_Show_Detail_View,
-     Card_Params_View
-)
+# from .views import (
+#     # Cards_View_Common,
+#     # Cards_View_Particular,
+#     # GetAttributes_View,
 
+#     # Cards_Create_View,
+#     # Cards_Show_View,
+#     # Cards_Show_Detail_View,
+#     #  Card_Params_View
+# )
+
+from .views.get_form import Get_Cards_Form
+from .views.create_form import Cards_Create_View
+from .views.get_cards import Cards_Show_View, Cards_Show_Detail_View, Card_Params_View
 
 urlpatterns = [
-    path("", Cards_View_Common.as_view()),
-    # path("model/", Cards_Model_View_Common.as_view()),
+    # path("", Cards_View_Common.as_view()),
+
+    # SHOW
+    path("show/", Cards_Show_View.as_view()),
+    path("show/<int:id>", Cards_Show_Detail_View.as_view()),
+    path("filter-params/", Card_Params_View.as_view()),
+
+    # CREATE
     path("create/<str:type>", Get_Cards_Form),
     path("create/", Cards_Create_View.as_view()),
-    path("attributes/<int:id>/", GetAttributes_View),
-    path("<int:id>", Cards_View_Particular.as_view()),
-    path("show/", Cards_Show_View.as_view()),
-    path("create/<int:id>", Cards_Show_Detail_View.as_view()),
-    path("filter-params/", Card_Params_View.as_view()),
+    
+    
+    # path("attributes/<int:id>/", GetAttributes_View),
+    
+    # path("<int:id>", Cards_View_Particular.as_view()),
+    
+
 ]
