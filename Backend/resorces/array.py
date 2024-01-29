@@ -15,3 +15,9 @@ def queryset_to_arr(queryset):
     for v in queryset:
         push(new_list, v)
     return new_list
+
+def queryset_to_dict(queryset):
+    new_dict = {}
+    for v in queryset:
+        new_dict.update({v : queryset[v]})
+    return new_dict

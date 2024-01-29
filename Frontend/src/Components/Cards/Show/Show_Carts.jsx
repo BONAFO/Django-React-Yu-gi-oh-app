@@ -7,6 +7,7 @@ import Cards_Sort from "./Sort"
 import Paginator from "./Paginator"
 import QueryPageContextProvider from "./Context/Queries"
 import { get_queries } from "./Controllers/Traslate_query"
+import Nav_Component from "../../Nav/Nav_Container"
 
 
 
@@ -74,7 +75,7 @@ export default function Show_Carts() {
 
 
 
-        console.log(queries_keys_page);
+       
 
         Object.keys(queries_keys_page).map(key => {
             queries.push(`${key}=${searchParams.get(key) || queries_keys_page[key]}`)
@@ -83,7 +84,8 @@ export default function Show_Carts() {
 
         // let queries = [`paginated=${paginated_by}`, `page=${actual_page - 1}`]
         get_cards(queries).then(res => {
-            let max_pages = res.max / (searchParams.get("paginated") || queries_keys_page.paginated);
+            let max_pages = parseInt(res.max )/ (parseInt(searchParams.get("paginated"))|| 10);
+
             max_pages = (max_pages.toString().includes(".")) ? (Math.floor(max_pages) + 1) : (Math.floor(max_pages));
             setMaxPages(max_pages)
             setCards(<Cards cards={res.data}></Cards>)
@@ -91,6 +93,11 @@ export default function Show_Carts() {
     }, [])
 
     return <div>
+
+<nav>
+    <Nav_Component text={"Home"} url={window.origin}></Nav_Component>
+    </nav>
+
         <div>
             <select name="paginated" value={searchParams.get("paginated") || 10} onChange={(e) => {
                 const queries = []

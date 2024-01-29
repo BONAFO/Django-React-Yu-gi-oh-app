@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-from resorces.array import push, queryset_to_arr
+from resorces.array import push, queryset_to_arr, queryset_to_dict
 from cards.functions.unpack_values import unpack_values
 from cards.functions.filters import show_cards_filters, build_extra_field
 
@@ -91,9 +91,17 @@ class Cards_Show_View(APIView):
 
 
 class Cards_Show_Detail_View(APIView):
-    def get(self, request, *args, **kwargs):
-        print(request)
-        return Response({"data": ""}, status=status.HTTP_201_CREATED)
+    def get(self, request, id, *args, **kwargs):
+        print(id)
+        queryset = Cards.objects.filter(pk = id);
+        
+        if queryset.count() > 0:
+            serializer = (CardSerializerGet(queryset, many=True)).data[0]
+            data = queryset_to_dict(serializer)
+            return Response({"data": data}, status=status.HTTP_200_OK)
+        else :
+            return Response({"data": ""}, status=status.HTTP_404_NOT_FOUND)
+            
 
 
 class Card_Params_View(APIView):

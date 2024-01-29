@@ -1,0 +1,164 @@
+
+
+.star-cont-desk{
+
+    margin: 5vh 0vw 0vh 3%;
+}
+
+
+.star-cont-mob{
+    
+}
+
+
+.star-img-desk{
+    width: 30px;
+    margin: 0vh 0vw 0vh 2%;
+
+}
+
+
+.star-img-mob{
+    
+}
+
+
+.pendulum-icon-desk{
+    margin: 6vh .5% 0vh 5%;
+}
+
+
+.pendulum-icon-mob{
+
+}
+
+.pendulum-tag-desk{
+    font-size: 3vh;
+    vertical-align: -70%;
+    margin: 0vw 0.3vw;
+}
+
+.pendulum-tag-mob{
+    
+}
+
+.star-cont-desk{
+    /* margin: 8% .5% 4% 5%; */
+}
+
+.star-cont-mob{
+    
+}
+
+.name-cont-desk{
+    /* display: block; */
+    /* margin: 4% 0% 0% 5%; */
+    width: 95%;
+    border: 1px solid black;
+    text-align: center;
+    margin: -35vh 0% 0% 3%;
+
+}
+
+.name-cont-mob{
+
+    
+}
+
+
+.name-tag-desk{
+    font-size: 5vh;
+
+}
+
+.name-tag-mob{
+
+    
+}
+
+
+.table-img-desk{
+    width: 20%;
+}
+.table-data-desk{
+    width: 80%;
+    
+}
+.table-img-mob{
+
+    
+}
+.table-data-mob{
+
+    
+}
+.img-cont-desk{
+    width: fit-content;
+}
+.img-cont-mob{
+    
+}
+
+.img-desk{
+    width: 50vh;
+}
+.img-mob{
+    
+}
+
+
+.points-cont-desk{
+    margin: 3vh 0vw 0vh 4%;
+}
+
+.points-cont-mob{
+    
+}
+
+
+.points-lab-desk{
+    font-size: 4vh;
+    
+}
+
+.points-lab-mob{
+}
+
+.attribute-img-desk{
+    display: inline-block;
+    margin: 4% 0% 0% 1%;
+}
+
+
+.points-txt-desk{
+    margin: 0vw 3%;
+
+}
+
+.points-txt-mob{
+
+
+}
+
+.attribute-img-mob{
+
+}
+
+.race-img-desk{
+    display: inline-block;
+    margin: 4% 0% 0% 4%;
+}
+
+.race-img-mob{
+
+}
+
+.attribute-txt-desk{
+    font-size: 3vh;
+    vertical-align: -55%;
+    margin: 0vw 4%;
+}
+
+.attribute-txt-mob{
+    
+}

@@ -28,6 +28,7 @@ class Cards_Create_View(APIView):
             )
 
         serializer = CardSerializerSet(data=request.data)
+        print(request.data)
         if not serializer.is_valid():
             print(serializer.errors)
             return Response(

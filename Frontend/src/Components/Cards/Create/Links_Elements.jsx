@@ -8,10 +8,6 @@ export default function create_link_options(isLink) {
 }
 
 function LinkUI() {
-    const {
-        register,
-        formState: { errors },
-    } = useForm();
 
 
     return <>

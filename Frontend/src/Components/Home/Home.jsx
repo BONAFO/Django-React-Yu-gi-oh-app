@@ -16,6 +16,10 @@ export default function Home() {
         <br />
         <a href="/cards/show-cards">SHOW CARDS</a>
         <br />
-        {(user_logged) ? ("THIS IS MY HOME!!") : ("BUEN DIA EXTRAÑO")}
+        {(user_logged) ? ("THIS IS MY HOME!!") : (<>
+            <a href="/login">LOGIN</a>
+            <br />
+            "BUEN DIA EXTRAÑO"
+        </>)}
     </div>
 }

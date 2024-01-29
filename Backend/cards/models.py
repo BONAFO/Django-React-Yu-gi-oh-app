@@ -102,6 +102,7 @@ class Cards(models.Model):
         max_length=20,
         null=True,
         unique=False,
+        blank=True,
         verbose_name="Defense Points",
     )
     # IF IT'S LIKN, LINK RANK

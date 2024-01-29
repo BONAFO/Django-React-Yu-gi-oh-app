@@ -6,7 +6,10 @@ export default function Card({ card_data }) {
     const respo = useResponsiveContext()
 
     return (
-        <div className={`card-frame-${respo}`}>
+        <div className={`card-frame-${respo}`} onClick={()=>{
+           const url =  window.origin + "/cards/card/"  + "?id=" +  card_data.id;
+           window.location.href = url
+        }}>
             <h2 className={`card-name-${respo}`}>{card_data.name}</h2>
             <img src={card_data.url_img} className={`card-img-${respo}`} alt="" />
             <br />

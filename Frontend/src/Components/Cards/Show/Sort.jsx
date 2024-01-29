@@ -16,8 +16,13 @@ export default function Cards_Sort() {
                 if(queries_keys_page["paginated"] !== undefined){
                     queries.push(`${"paginated"}=${queries_keys_page["paginated"]}`)
                 }
+                
                 // FALTA OBTENER LOS FILTROS
-                // order = get_sort_query(parseInt(e.target.value), order)
+                Object.keys(queries_keys_page).map(key => {
+                    if(key != "order_by"){
+                        queries.push(`${key}=${queries_keys_page[key]}`)
+                    }
+                })
                 let order = e.target.value;
                 queries.push(`order_by=${order}`)
                 const url = build_url(queries)

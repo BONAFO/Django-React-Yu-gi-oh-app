@@ -9,7 +9,6 @@ export default function Paginator({ maxPages }) {
     const { queries_keys_page } = useQueryPageContext()
     const [searchParams, setSearchParams] = useSearchParams();
 
-
     // queries_keys_page.page = parseInt(e.target.value)
     return <div>
         <ReactPaginate
