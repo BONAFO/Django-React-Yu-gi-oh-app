@@ -1,5 +1,6 @@
 import { useResponsiveContext } from "../../../../../Context/IsMobile";
 import { capitalizate } from "../../../Show/Controllers/Capitalize";
+import { isNotNull } from "../../functions/isNotNull";
 
 const identify_pack = (method) => {
     method = method.toLowerCase();
@@ -19,28 +20,32 @@ const identify_pack = (method) => {
     return method
 }
 const create_packs_list = (methods,respo) => {
-    const methods_arr = methods.split(",");
-    const elements = [];
-    methods_arr.map((data,i) => {
-        elements.push(
-            <li key={"c-pack-" +i}>
-                <label
-                    className={`points-lab-${respo} pack-txt-${respo}`}
-                    htmlFor=""
-                >
-                    {identify_pack(data)}
-                </label>
-            </li>
-        )
-    })
-
-    if (elements.length == 0) {
-        return elements
+    if(isNotNull(methods)){
+        const methods_arr = methods.split(",");
+        const elements = [];
+        methods_arr.map((data,i) => {
+            elements.push(
+                <li key={"c-pack-" +i}>
+                    <label
+                        className={`points-lab-${respo} pack-txt-${respo}`}
+                        htmlFor=""
+                    >
+                        {identify_pack(data)}
+                    </label>
+                </li>
+            )
+        })
+    
+        if (elements.length == 0) {
+            return elements
+        }
+        return <div className={`pack-item-${respo}`}>
+            {elements}
+            <br />
+        </div>;
+    }else{
+        return <></>
     }
-    return <div className={`star-cont-${respo}`}>
-        {elements}
-        <br />
-    </div>;
 
 
 }

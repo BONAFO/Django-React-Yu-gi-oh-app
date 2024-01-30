@@ -1,10 +1,12 @@
 import { useResponsiveContext } from "../../../../Context/IsMobile";
-import { build_icon } from "../../../../Controllers/Cards/Show/api-icons";
 
 import "../../../../styles/Card_Detail/manifiest.css";
-import { capitalizate } from "../../Show/Controllers/Capitalize";
 import { useCardDataContext } from "../Context/Card_Data";
+import { isNotNull } from "../functions/isNotNull";
+import Card_Allowed from "./Card_Elements/Card_Allowed";
 import Card_ATK_DEF from "./Card_Elements/Card_Atk_Def";
+import Card_Description from "./Card_Elements/Card_Description";
+import Card_Description_Pendulum from "./Card_Elements/Card_Description_Pendulum";
 import Card_Pack from "./Card_Elements/Card_Pack";
 import Card_Pendulum_Scales from "./Card_Elements/Card_Pendulum";
 import Card_RACE_ATTRIBUTE from "./Card_Elements/Card_Race_Attribute";
@@ -12,34 +14,27 @@ import Card_Stars from "./Card_Elements/Card_Stars";
 import Card_Image from "./Card_Elements/Image";
 import Card_Name from "./Card_Elements/Name";
 
+
+
 export default function Card_Detail() {
     const respo = useResponsiveContext();
     const { card_data } = useCardDataContext();
     console.log(card_data);
 
-    const create_description = () => {
-        const elements = [];
+    const get_card =()=>{
+        try {
+             if(card_data.card_subtype.card_family.includes("t")){
+              return "t"
+            }else if(card_data.card_subtype.card_family[0] == "s"){
+                return "s"
+            }
 
-        if (
-            card_data.card_pendulum_description !== undefined &&
-            card_data.card_pendulum_description !== null &&
-            card_data.card_pendulum_description.length !== 0
-        ) {
-
+            return false
+        } catch (error) {
+            return false
         }
-
-        if (
-            card_data.card_pendulum_description !== undefined &&
-            card_data.card_pendulum_description !== null &&
-            card_data.card_pendulum_description.length !== 0
-        ) {
-
-        }
-
-        return elements
-
     }
-
+    get_card()
     return (
         <div>
             <div className={`page-cont-${respo}`}>
@@ -75,6 +70,8 @@ export default function Card_Detail() {
                         }}></Card_RACE_ATTRIBUTE>
 
 
+                        <Card_Allowed card_allowed={card_data.allowed}></Card_Allowed>
+
                         <Card_Pack key={"card-pack"} obtain_method={card_data.obtain_method}></Card_Pack>
 
 
@@ -84,7 +81,14 @@ export default function Card_Detail() {
             </div>
 
             <div>
-                {create_description()}
+
+                <Card_Description_Pendulum card_pendulum_description={card_data.card_pendulum_description}>
+
+                </Card_Description_Pendulum>    
+
+                <Card_Description description={card_data.card_description} is_Pendulum={isNotNull(card_data.card_pendulum_description)} is_TrapMagic={get_card()}></Card_Description>
+                
+                {/* {create_description()} */}
             </div>
         </div>
     );

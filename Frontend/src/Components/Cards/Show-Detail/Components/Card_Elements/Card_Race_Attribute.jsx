@@ -1,13 +1,12 @@
 import { useResponsiveContext } from "../../../../../Context/IsMobile";
 import { build_icon } from "../../../../../Controllers/Cards/Show/api-icons";
 import { capitalizate } from "../../../Show/Controllers/Capitalize";
+import { isNotNull } from "../../functions/isNotNull";
 
 const get_attributes_value = (card_data, respo) => {
     const attribute = (
 
-        card_data.attribute !== undefined &&
-        card_data.attribute !== null &&
-        card_data.attribute.length !== 0
+        isNotNull(card_data.attribute)
     ) ? (
 
         build_icon({
@@ -20,10 +19,10 @@ const get_attributes_value = (card_data, respo) => {
     );
 
     const race = (
-
-        card_data.card_subtype !== undefined &&
-        card_data.card_subtype !== null &&
-        card_data.card_subtype.length !== 0
+isNotNull(card_data.card_subtype)
+        // card_data.card_subtype !== undefined &&
+        // card_data.card_subtype !== null &&
+        // card_data.card_subtype.length !== 0
     ) ? (
 
         build_icon({
@@ -81,19 +80,6 @@ const get_attributes_value = (card_data, respo) => {
             </>
         }
 };
-
-
-// function Card_Race({}){
-//     return <>
-
-//     </>
-// }
-
-// function Card_Attribute({}){
-//     return <>
-
-//     </>
-// }
 
 
 export default function Card_RACE_ATTRIBUTE({card_data}) {
