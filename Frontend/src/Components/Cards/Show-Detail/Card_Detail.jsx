@@ -5,6 +5,7 @@ import { get_card_detail } from "../../../Controllers/Cards/Show_Detail/axios.ca
 import Nav_Component from "../../Nav/Nav_Container";
 import _404_CARD_NOT_FOUND from "./Components/404.not_found";
 import Card_Detail from "./Components/Card";
+import CardDataContextProvider from "./Context/Card_Data";
 
 
 
@@ -24,7 +25,7 @@ export default function Show_Card_Detail({card_id}){
         
     const show_card = ()=>{
         if(card !== undefined){
-            return <Card_Detail card_data={card}></Card_Detail>
+            return <Card_Detail></Card_Detail>
         }else{
             return <_404_CARD_NOT_FOUND></_404_CARD_NOT_FOUND>
         }
@@ -41,7 +42,9 @@ export default function Show_Card_Detail({card_id}){
 
        <div>
         
+        <CardDataContextProvider card_data={card}>
         {show_card()}
+        </CardDataContextProvider>
        </div>
     </div>
 }

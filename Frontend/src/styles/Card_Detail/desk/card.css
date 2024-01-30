@@ -1,68 +1,85 @@
-
-
-.star-cont-desk{
-
-    margin: 5vh 0vw 0vh 3%;
+.img-cont-desk{
+    display: flex;
+    width: fit-content;
+    float: left;
+    margin: 2% 0% 0% 5vw;
 }
 
 
-.star-cont-mob{
-    
+.img-cont-mob{
+    margin: 2% 0% 0% 20vw;
 }
 
 
-.star-img-desk{
+
+
+.attribute-img-desk{
+    display: inline-block;
+    margin: 4% 0% 0% 5%;
+}
+
+.attribute-img-mob{
+    display: inline-block;
     width: 30px;
-    margin: 0vh 0vw 0vh 2%;
-
+    margin: 4% 0% 0% 5%;
 }
 
-
-.star-img-mob{
-    
+.race-img-desk{
+    display: inline-block;
+    margin: 4% 0% 0% 4%;
 }
 
-
-.pendulum-icon-desk{
-    margin: 6vh .5% 0vh 5%;
+.race-img-mob{
+    width: 30px;
+    display: inline-block;
+    margin: 4% 0% 0% 4%;
 }
 
-
-.pendulum-icon-mob{
-
-}
-
-.pendulum-tag-desk{
+.attribute-txt-desk{
     font-size: 3vh;
-    vertical-align: -70%;
-    margin: 0vw 0.3vw;
+    vertical-align: -15%;
+    margin: 0vw 4%;
 }
 
-.pendulum-tag-mob{
-    
+.attribute-txt-mob{
+    font-size: 2vh;
+    vertical-align: -5%;
+    margin: 2vh 2% 0% 2%;
 }
 
-.star-cont-desk{
-    /* margin: 8% .5% 4% 5%; */
+
+
+
+@media(max-width: 600px) {
+
+    .img-cont-mob{
+        margin: 2% 0% 0% 7.5%;
+    }
+
 }
 
-.star-cont-mob{
-    
+
+
+
+
+
+.img-desk{
+    width: 50vh;
+}
+.img-mob{
+    width: 40vh;
 }
 
 .name-cont-desk{
-    /* display: block; */
-    /* margin: 4% 0% 0% 5%; */
-    width: 95%;
-    border: 1px solid black;
+
     text-align: center;
-    margin: -35vh 0% 0% 3%;
+    margin: 0vh 0% 0% 3%;
 
 }
 
 .name-cont-mob{
 
-    
+    text-align: center;
 }
 
 
@@ -72,62 +89,77 @@
 }
 
 .name-tag-mob{
-
-    
+    font-size: 3.5vh;
+    margin: 3% 0% 2% 0%;
 }
 
 
-.table-img-desk{
-    width: 20%;
-}
-.table-data-desk{
-    width: 80%;
-    
-}
-.table-img-mob{
 
-    
-}
-.table-data-mob{
-
-    
-}
-.img-cont-desk{
-    width: fit-content;
-}
-.img-cont-mob{
-    
+.star-cont-desk{
+    margin: 5vh 0vw 0vh 1.3vw;
 }
 
-.img-desk{
-    width: 50vh;
+
+.star-cont-mob{
+    margin: 1vh 0vw 0vh 3vw;
 }
-.img-mob{
-    
+
+
+.star-img-desk{
+    width: 30px;
+    margin: 0vh 0vw 0vh 1%;
+
 }
+
+
+.star-img-mob{
+    width: 30px;
+    margin: 0vh 0vw 0vh 1%;
+}
+
+
+.pendulum-icon-desk{
+    margin: 6vh .5% 0vh 5%;
+}
+
+
+.pendulum-icon-mob{
+    margin: 3vh .5% 0vh 4%;
+}
+
+.pendulum-tag-desk{
+    font-size: 3vh;
+    vertical-align: -70%;
+    margin: 0vw 0.3vw;
+}
+
+.pendulum-tag-mob{
+    font-size: 3vh;
+    vertical-align: -45%;
+    margin: 0vw 0vw 0% 4vw;
+}
+
+
 
 
 .points-cont-desk{
     margin: 3vh 0vw 0vh 4%;
 }
-
 .points-cont-mob{
-    
+    margin: 3vh 0vw 0vh 4%;
 }
 
 
 .points-lab-desk{
-    font-size: 4vh;
+    font-size: 3vh;
     
 }
 
 .points-lab-mob{
+    font-size: 2.5vh;
 }
 
-.attribute-img-desk{
-    display: inline-block;
-    margin: 4% 0% 0% 1%;
-}
+
 
 
 .points-txt-desk{
@@ -137,28 +169,77 @@
 
 .points-txt-mob{
 
-
+ margin: 0vw 3%;
 }
 
-.attribute-img-mob{
 
+
+.pack-txt-desk{
+    margin: 1vh 1%;
 }
 
-.race-img-desk{
+.pack-txt-mob{
+    margin: .5vh 1%;
+}
+
+.card-content-cont-desk{
     display: inline-block;
-    margin: 4% 0% 0% 4%;
+    position:relative;
+    width: 40%;
+    margin: 2% 0% 0% 10%;
+    padding: 3% 3% 5% 3% ;
+    background-color: #c1f6ff6c;
+    border-radius: 1%;
 }
 
-.race-img-mob{
-
+.card-content-cont-mob{
+    background-color: #c1f6ff6c;
+    width: 90%;
+    margin: 0% 6% 2% 6%;
+    border-radius: 1%;
 }
 
-.attribute-txt-desk{
-    font-size: 3vh;
-    vertical-align: -55%;
-    margin: 0vw 4%;
+.page-cont-desk{
+margin: 3% 0% 0% 0%;
 }
 
-.attribute-txt-mob{
+.page-cont-mob{
     
+}
+
+
+.packlist{
+    list-style: none;
+    padding-left: 0;
+}
+
+.link-font-style{
+color: #4074b5;
+font-weight: 500;
+}
+
+.points-separator-desk{
+    margin-right: 2%;
+}
+
+.points-separator-mob{
+    margin-right: 2%;
+}
+
+
+.is-magic-desk{
+    margin-top: 7%;
+    margin-left: 2%;
+}
+
+.is-magic-mob{
+    margin-left: 0%;
+}
+
+.attributes-race-cont-desk{
+    margin: 4% 0% 2% 3%;
+}
+
+.attributes-race-cont-mob{
+    margin: 2% 0% 1% 3%;
 }

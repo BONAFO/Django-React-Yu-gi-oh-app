@@ -79,13 +79,17 @@ class Cards(models.Model):
     )
     # BOOL
     # TEXT DESCRIPTION OF THE CARD
-    card_description = (
-        models.TextField(
-            null=True,
-            unique=False,
-            verbose_name="Description",
-        ),
+    # card_description =  models.TextField(
+    #         null=True,
+    #         unique=False,
+    #         verbose_name="Description",
+    #     ),
+    card_description = models.TextField(
+        null=True,
+        unique=False,
+        verbose_name="Description",
     )
+    
     # IF IS PENDULUMN, DESCRIPTION OF THE PENDULUM ZONE
     card_pendulum_description = models.TextField(
         null=True,

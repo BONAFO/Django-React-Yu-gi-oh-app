@@ -22,10 +22,10 @@ export const responsiveContext = createContext();
 export const useResponsiveContext = () => useContext(responsiveContext)
 
 const CreateResponseContextProvider = ({ children }) => {
-    const [respomode, setResponsive] = useState((window.innerWidth > 600) ? ("desk") : ("mob"));
+    const [respomode, setResponsive] = useState((window.innerWidth > 900) ? ("desk") : ("mob"));
 
     window.onresize = () => {
-        (window.innerWidth > 600) ? setResponsive("desk") : setResponsive("mob")
+        (window.innerWidth > 900) ? setResponsive("desk") : setResponsive("mob")
     }
 
 
