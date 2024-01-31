@@ -1,37 +1,22 @@
+
+
 .card-frame-mob{
-    max-width: 90%;
-    border: 2px solid black;
+
+    display: inline-block;
+    margin: 4% 2%;
+    width: fit-content;
+    background-color: #9af9fc73;
+    box-shadow: 2px 2px 2px 2px #9af8fc73;
     text-align: center;
-    padding: 0% 0% 5% 0%;
-    margin: 4%;
-}
+    padding: 3vh;
+    
+    cursor: pointer;
+}   
+
+
+
 .card-img-mob{
-    width: 70%;
+    width: 30vh;
  
-}
-
-
-.data-frame-mob{
-    display: inline-table; 
-
-}
-.star-img-mob{
-    width: 25px;
-}
-
-.star-txt-mob{
-    display: inline;
-    font-size: 35px;
-}
-
-
-
-.stat-txt-mob{
-    display: inline;
-    font-size: 30px;
-}
-
-.card-name-mob{
-    font-size: 25px;
 }
 

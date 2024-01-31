@@ -6,12 +6,14 @@ import CardParamsContextProvider from "./Context/Cards_Params";
 import { build_url } from "./Show_Carts";
 import { useQueryPageContext } from "./Context/Queries";
 import { get_queries } from "./Controllers/Traslate_query";
+import { useResponsiveContext } from "../../../Context/IsMobile";
 
 // HEAD FOR EVERY FILTER QUERY
 const filter_head = "f__";
 
 export default function Modal_Filter({ setModal, params }) {
     const filters = {};
+    const respo = useResponsiveContext()
 
     const { queries_keys_page } = useQueryPageContext()
 
@@ -44,8 +46,12 @@ export default function Modal_Filter({ setModal, params }) {
     return (
         <div className="modal-cont">
             <button
+                className={`modal-btn-${respo} close-btn close-btn-${respo}`}
                 onClick={async () => {
-                    setModal("");
+                    document.getElementById("modal-filter").style.opacity = 0;
+                    setTimeout(() => {
+                        setModal("");
+                    }, 500);
                 }}
             >
                 X
@@ -68,32 +74,11 @@ export default function Modal_Filter({ setModal, params }) {
 
 
                     <button
+                    className={`modal-btn-${respo} modal-btn-bigbtn-${respo}`}
                         onClick={() => {
                             let queries = [];
-                            
-                            // queries = match_queries({
-                            //     card_link_max
-                            //         :
-                            //         "4",
-                            //     card_link_min
-                            //         :
-                            //         "1",
-                            //     card_type
-                            //         :
-                            //         "3",
-                            // });
 
-                            // let f = {
-                            //     card_link_max
-                            //         :
-                            //         "4",
-                            //     card_link_min
-                            //         :
-                            //         "1",
-                            //     card_type
-                            //         :
-                            //         "3",
-                            // };
+                 
                             Object.keys(queries_keys_page).map(key => {
                                 if (key !== "page" && !key.includes(filter_head)) {
                                     queries.push(`${key}=${queries_keys_page[key]}`)
@@ -105,58 +90,18 @@ export default function Modal_Filter({ setModal, params }) {
 
                             const url = build_url(queries);
                             window.location.href = url;
-                            // console.log(url);
-
-                            // //SIMULANDO
-
-                            // let raw_queries = url;
-                            // let start_queries = {};
-
-                            // raw_queries = raw_queries.replace(window.origin, "");
-                            // raw_queries = raw_queries.replace(window.location.pathname, "");
-                            // raw_queries = raw_queries.replace("?", "");
-                            // raw_queries = raw_queries.split("&")
-                            // raw_queries = raw_queries.map(q => q.split("="));
-                            // raw_queries.map(q => {
-                            //     if (q[0] !== "") {
-                            //         start_queries[q[0]] = q[1].trim()
-                            //     }
-                            // })
-
-                          
-                            // f = {
-                            //     stars_max
-                            //         :
-                            //         "5",
-                            //     stars_min
-                            //         :
-                            //         "3",
-                            //     attribute
-                            //         :
-                            //         "22",
-                            // };
-                            // queries =[]
-                            // Object.keys(start_queries).map(key => {
-                            //     if (key !== "page" && !key.includes(filter_head)) {
-                            //         queries.push(`${key}=${start_queries[key]}`)
-                            //     }
-                            // })
-                            // Object.keys(f).map(key => {
-                            //     queries.push(`${filter_head}${key}=${f[key]}`)
-                            // })
-
-                            // const url2 = build_url(queries);
-                            // console.log("url2",url2);
-
-                            // build_filter_query()
-                            // clear_filters(filters);
+                       
                         }}
                     >
                         APPLY FILTERS
                     </button>
                     <button
+                    className={`modal-btn-${respo} close-btn close-btn-${respo}  modal-btn-bigbtn-${respo}`}
                         onClick={async () => {
-                            setModal("");
+                            document.getElementById("modal-filter").style.opacity = 0;
+                            setTimeout(() => {
+                                setModal("");
+                            }, 500);
                         }}
                     >
                         CANCEL

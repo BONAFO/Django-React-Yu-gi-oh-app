@@ -31,11 +31,13 @@ export default function Show_Card_Detail({card_id}){
         }
     }
     
+    const back_url = sessionStorage.getItem("origin"); 
+   
     return <div>
         
     <nav>
     <Nav_Component text={"Home"} url={window.origin}></Nav_Component>
-    <Nav_Component text={"Cards"} url={window.origin + "/cards/show-cards"}></Nav_Component>
+    <Nav_Component text={"Cards"} url={window.origin + `/cards/show-cards/${(back_url == null) ?("") : (back_url)}`}></Nav_Component>
     </nav>
        
 

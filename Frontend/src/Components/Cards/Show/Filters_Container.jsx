@@ -1,3 +1,4 @@
+import { useResponsiveContext } from "../../../Context/IsMobile";
 import Card_Filters_Selector, {
   export_HandleChange,
 } from "./Components/Card_Filters_Selector";
@@ -15,7 +16,7 @@ import {
 export default function Filters_Container() {
   const { params } = useCardParamsContext();
   const { isLink, isSpell, isTrap, isPendulum } = useCardTypeFilterContext();
-
+  const respo = useResponsiveContext()
   return (
     <>
       {!isSpell && !isTrap && !isLink ? (
@@ -39,8 +40,11 @@ export default function Filters_Container() {
 
       {!isSpell && !isTrap ? (
         <>
-          <label htmlFor="">{"ATK Min"}</label>
+          <label
+            className={`filter-modal-selector-lab-${respo}`}
+            htmlFor="">{"ATK Min"}</label>
           <input
+                 className={`filter-modal-input-${respo}`}
             type="number"
             name="card_atk_min"
             onChange={(e) => {
@@ -48,8 +52,13 @@ export default function Filters_Container() {
             }}
           />
 
-          <label htmlFor="">{"ATK Max"}</label>
+          <label htmlFor=""
+            className={`filter-modal-selector-lab-${respo}`}
+          >{"ATK Max"}
+          </label>
           <input
+            className={`filter-modal-input-${respo}`}
+
             type="number"
             name="card_atk_max"
             onChange={(e) => {
@@ -60,8 +69,11 @@ export default function Filters_Container() {
           {!isLink ? (
             <>
               <br />
-              <label htmlFor="">{"DEF Min"}</label>
+              <label htmlFor=""
+                className={`filter-modal-selector-lab-${respo}`}
+              >{"DEF Min"}</label>
               <input
+                     className={`filter-modal-input-${respo}`}
                 type="number"
                 name="card_def_min"
                 onChange={(e) => {
@@ -69,8 +81,11 @@ export default function Filters_Container() {
                 }}
               />
 
-              <label htmlFor="">{"DEF Max"}</label>
+              <label htmlFor=""
+                className={`filter-modal-selector-lab-${respo}`}
+              >{"DEF Max"}</label>
               <input
+                     className={`filter-modal-input-${respo}`}
                 type="number"
                 name="card_def_max"
                 onChange={(e) => {

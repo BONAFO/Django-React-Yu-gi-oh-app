@@ -1,3 +1,4 @@
+import { useResponsiveContext } from "../../../../Context/IsMobile";
 import { useCardParamsContext } from "../Context/Cards_Params";
 import { useFilterContext } from "../Context/Filter";
 import { useCardTypeFilterContext } from "../Context/Type_Card_Filter";
@@ -14,7 +15,7 @@ export default function Card_Filters_Selector({ label, name, options }) {
   const { setLink, setSpell, setTrap, setPendulum } =
     useCardTypeFilterContext();
   const { params } = useCardParamsContext();
-
+  const respo = useResponsiveContext()
   
 
 
@@ -68,8 +69,9 @@ export default function Card_Filters_Selector({ label, name, options }) {
 
   return (
     <>
-      <label htmlFor="">{label}</label>
+      <label htmlFor="" className={`filter-modal-selector-lab-${respo}`}>{label}</label>
       <select
+             className={`filter-modal-input-${respo}`}
         onChange={(e) => {
           //   filter[e.target.name] = parseInt(e.target.value);
           HandleChange(e.target.name, e.target.value);

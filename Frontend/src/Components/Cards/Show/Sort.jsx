@@ -1,17 +1,20 @@
 import { useSearchParams } from "react-router-dom";
 import { useQueryPageContext } from "./Context/Queries";
 import { build_url } from "./Show_Carts";
+import { useResponsiveContext } from "../../../Context/IsMobile";
 
 
 export default function Cards_Sort() {
 
     const { queries_keys_page } = useQueryPageContext()
     const [searchParams, setSearchParams] = useSearchParams();
-
+    const respo = useResponsiveContext()
     return (
         <div>
-            <label htmlFor="">SORT</label>
-            <select name="sort" value={queries_keys_page.order_by || "name"}  id="" onChange={(e) => {
+            <label className={`selector-label-start-${respo} selector-label-${respo}`} htmlFor="">SORT</label>
+            <select 
+            className={`selector-label-end-${respo} selector-label-${respo}`}
+            name="sort" value={queries_keys_page.order_by || "name"}  id="" onChange={(e) => {
                 const queries = [];
                 if(queries_keys_page["paginated"] !== undefined){
                     queries.push(`${"paginated"}=${queries_keys_page["paginated"]}`)

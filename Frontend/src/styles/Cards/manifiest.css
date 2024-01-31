@@ -3,3 +3,5 @@
 @import url("mob/card.css");
 @import url("mob/card_icons.css");
 @import url("desk/modal.css");
+@import url("desk/card_filter.css");
+@import url("mob/card_filter.css");

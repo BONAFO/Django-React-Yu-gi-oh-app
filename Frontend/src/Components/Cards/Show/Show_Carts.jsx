@@ -8,6 +8,7 @@ import Paginator from "./Paginator"
 import QueryPageContextProvider from "./Context/Queries"
 import { get_queries } from "./Controllers/Traslate_query"
 import Nav_Component from "../../Nav/Nav_Container"
+import { useResponsiveContext } from "../../../Context/IsMobile"
 
 
 
@@ -60,7 +61,7 @@ export default function Show_Carts() {
     //     page: searchParams.get("page") || 0,
     //     order_by : searchParams.get("order_by") || undefined,
     // });
-
+    const respo = useResponsiveContext()
     const [queries_keys_page, setQueries_keys_page] = useState(get_queries());
 
     // const update_cards = () => {
@@ -99,7 +100,10 @@ export default function Show_Carts() {
     </nav>
 
         <div>
-            <select name="paginated" value={searchParams.get("paginated") || 10} onChange={(e) => {
+            <label className={`selector-label-start-${respo} selector-label-${respo}`} htmlFor="">DISPLAY</label>
+            <select name="paginated" 
+            className={`selector-btn-${respo}`} 
+            value={searchParams.get("paginated") || 10} onChange={(e) => {
                 const queries = []
 
 
@@ -111,19 +115,10 @@ export default function Show_Carts() {
                         queries.push(`${key}=${queries_keys_page[key]}`)
                     }
                 })
-                // queries_keys_page.paginated = parseInt(e.target.value)
-                // queries_keys_page.page = parseInt(0)
-                // Object.keys(queries_keys_page).map(key => {
-                //     if (key == "paginated" || key == "page") {
-                //         queries.push(`${key}=${queries_keys_page[key]}`)
-                //     } else {
-                //         queries.push(`${key}=${searchParams.get(key) || queries_keys_page[key]}`)
-                //     }
-                // })
+
                 const url = build_url(queries)
                 window.location.href = url
-                // paginated_by = parseInt(e.target.value)
-                // update_cards()
+
             }} id="">
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -132,6 +127,7 @@ export default function Show_Carts() {
                 <option value="50">50</option>
 
             </select>
+            <label className={`selector-label-end-${respo} selector-label-${respo}`} htmlFor="">ELEMENTS</label>
             <QueryPageContextProvider queries_keys_page={queries_keys_page} setQueries_keys_page={setQueries_keys_page}>
                 <Cards_Sort></Cards_Sort>
                 <Cards_Filter></Cards_Filter>
