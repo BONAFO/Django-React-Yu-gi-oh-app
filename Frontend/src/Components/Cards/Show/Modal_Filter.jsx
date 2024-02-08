@@ -77,17 +77,20 @@ export default function Modal_Filter({ setModal, params }) {
                     className={`modal-btn-${respo} modal-btn-bigbtn-${respo}`}
                         onClick={() => {
                             let queries = [];
-
+                            const exceptions_filter =[ `${filter_head}text`];
                  
                             Object.keys(queries_keys_page).map(key => {
-                                if (key !== "page" && !key.includes(filter_head)) {
+                                if (key !== "page" && (!key.includes(filter_head)) ) {
+                                    queries.push(`${key}=${queries_keys_page[key]}`)
+                                }else if (exceptions_filter.indexOf(key) !== -1){
                                     queries.push(`${key}=${queries_keys_page[key]}`)
                                 }
                             })
+                            
+
                             Object.keys(filters).map(key => {
                                 queries.push(`${filter_head}${key}=${filters[key]}`)
                             })
-
                             const url = build_url(queries);
                             window.location.href = url;
                        

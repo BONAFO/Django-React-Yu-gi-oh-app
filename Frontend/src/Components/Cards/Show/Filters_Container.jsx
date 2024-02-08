@@ -44,7 +44,7 @@ export default function Filters_Container() {
             className={`filter-modal-selector-lab-${respo}`}
             htmlFor="">{"ATK Min"}</label>
           <input
-                 className={`filter-modal-input-${respo}`}
+            className={`filter-modal-input-${respo}`}
             type="number"
             name="card_atk_min"
             onChange={(e) => {
@@ -73,7 +73,7 @@ export default function Filters_Container() {
                 className={`filter-modal-selector-lab-${respo}`}
               >{"DEF Min"}</label>
               <input
-                     className={`filter-modal-input-${respo}`}
+                className={`filter-modal-input-${respo}`}
                 type="number"
                 name="card_def_min"
                 onChange={(e) => {
@@ -85,7 +85,7 @@ export default function Filters_Container() {
                 className={`filter-modal-selector-lab-${respo}`}
               >{"DEF Max"}</label>
               <input
-                     className={`filter-modal-input-${respo}`}
+                className={`filter-modal-input-${respo}`}
                 type="number"
                 name="card_def_max"
                 onChange={(e) => {
@@ -154,6 +154,7 @@ export default function Filters_Container() {
 
       {!isSpell && !isTrap ? (
         <>
+          {(respo == "mob") ? (<br />) : ("")}
           <Card_Filters_Selector
             label={"Attribute"}
             name={"attribute"}
@@ -163,7 +164,7 @@ export default function Filters_Container() {
       ) : (
         " "
       )}
-
+      {(respo == "mob") ? (<br />) : ("")}
       <Card_Filters_Selector
         label={"Card type"}
         name={"card_type"}

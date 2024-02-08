@@ -20,7 +20,7 @@ def build_extra_field(pseudonumeric_fields, filter):
             key = key.replace("_integer__lte", "")
             extra.update({key + "_integer": Cast(key, output_field=IntegerField())})
 
-    print(extra)
+
     return extra
 
 
@@ -52,5 +52,16 @@ def show_cards_filters(request):
                 )
         except Exception as error:
             print(error)
-    print(filters)
+
     return filters
+
+
+def get_text_card_filter(request):
+    filter_head = "f__"
+
+    try:
+        card_text = request.GET.get(filter_head + 'text')
+    except :
+        card_text = False
+    
+    return card_text

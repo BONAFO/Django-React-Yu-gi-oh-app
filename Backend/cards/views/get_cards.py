@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.db.models import Q
 from cards.models import Cards
 from cards.serialaizer import CardSerializerGet
 from resorces.array import push
@@ -10,7 +11,7 @@ from rest_framework.views import APIView
 
 from resorces.array import push, queryset_to_arr, queryset_to_dict
 from cards.functions.unpack_values import unpack_values
-from cards.functions.filters import show_cards_filters, build_extra_field
+from cards.functions.filters import show_cards_filters, build_extra_field, get_text_card_filter
 
 
 class Cards_Show_View(APIView):
@@ -40,7 +41,8 @@ class Cards_Show_View(APIView):
         pair = [paginated * page, paginated * (page + 1)]
 
         filter = show_cards_filters(request)
-
+        card_text_filter = get_text_card_filter(request)
+        
         if len(filter) <= 0:
             queryset = Cards.objects.all()
         else:
@@ -48,6 +50,15 @@ class Cards_Show_View(APIView):
             queryset = Cards.objects.annotate(**extra_filter).filter(
                 **filter
             )
+
+
+        if card_text_filter != False and card_text_filter != None:
+           queryset = queryset.filter(
+               Q(name__icontains=card_text_filter) | 
+               Q(card_description__icontains=card_text_filter) | 
+               Q(card_pendulum_description__icontains=card_text_filter)
+           )
+
 
         if order_by.replace("-", "") in pseudonumeric_fields:
             queryset = queryset.extra(
@@ -59,6 +70,7 @@ class Cards_Show_View(APIView):
             ).order_by(order_by)
         else:
             queryset = queryset.order_by(order_by)
+
 
         query = queryset[pair[0] : pair[1]]
         serializer = CardSerializerGet(query, many=True)

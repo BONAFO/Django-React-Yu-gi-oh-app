@@ -9,6 +9,7 @@ import QueryPageContextProvider from "./Context/Queries"
 import { get_queries } from "./Controllers/Traslate_query"
 import Nav_Component from "../../Nav/Nav_Container"
 import { useResponsiveContext } from "../../../Context/IsMobile"
+import Search_Bar from "../Show-Detail/Components/Card_Elements/Search_Bar"
 
 
 
@@ -130,6 +131,7 @@ export default function Show_Carts() {
             <label className={`selector-label-end-${respo} selector-label-${respo}`} htmlFor="">ELEMENTS</label>
             <QueryPageContextProvider queries_keys_page={queries_keys_page} setQueries_keys_page={setQueries_keys_page}>
                 <Cards_Sort></Cards_Sort>
+                <Search_Bar></Search_Bar>
                 <Cards_Filter></Cards_Filter>
             </QueryPageContextProvider>
 
