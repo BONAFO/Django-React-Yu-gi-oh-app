@@ -292,14 +292,19 @@ class home_view(APIView):
 
 class User_Perms_Validation_Perms(APIView):
     def get(self, request, id, *args, **kwargs):
-        try:
-            user_call_validation(request=request, perm=request.data.perms)
-        except Exception as error:
-          print(error)
-          return Response(
-               {"error": "Token invalido o expirado."},
-              status=status.HTTP_403_FORBIDDEN,
-          ) 
-        return Response(
-            {"bool": True}, status=status.HTTP_200_OK
-        )
+        decoded = token_decode(token=request.data["token"])
+        status_f= status.HTTP_403_FORBIDDEN
+        if decoded != False:
+            print(decoded)
+        return Response({'logged': decoded} ,status=status_f)
+        # try:
+        #     user_call_validation(request=request, perm=request.data.perms)
+        # except Exception as error:
+        #   print(error)
+        #   return Response(
+        #        {"error": "Token invalido o expirado."},
+        #       status=status.HTTP_403_FORBIDDEN,
+        #   ) 
+        # return Response(
+        #     {"bool": True}, status=status.HTTP_200_OK
+        # )

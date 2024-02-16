@@ -1,0 +1,160 @@
+
+
+.banner-cont-desk{
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+}
+
+.banner-img-desk{
+   width: 100%;
+   height: 100%;
+   background-image: url("https://i.pinimg.com/originals/28/a8/57/28a85792a546979de609617dfe8075f2.jpg");
+   background-position: 0% 30%;
+}
+
+.banner-cont-mob{
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+}
+
+.banner-img-mob{
+   width: 100%;
+   height: 100%;
+   background-image: url("https://i.pinimg.com/originals/28/a8/57/28a85792a546979de609617dfe8075f2.jpg");
+   background-position: 15% 30%;
+}
+
+.user-icon-cont-desk{
+    position: absolute;
+    right: 3%;
+    top: 1%;
+    cursor: pointer;
+    z-index: 100000;
+}
+
+
+
+.user-icon-cont-mob{
+    position: fixed;
+    right: 3%;
+    bottom: 1%;
+    z-index: 100000;
+}
+
+
+.user-icon-desk{
+    height: 18vh;
+    width: 18vh;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    transition: border .3s  ;
+}
+
+
+.user-icon-desk:hover{
+    border: 2px solid #ff6d18;
+}
+.user-icon-mob{
+    height: 12vh;
+    width: 12vh;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    transition: border .3s  ;
+}
+
+.user-auth-cont-desk{
+    top: 1%;
+    right: 1%;
+}
+
+.user-auth-cont-mob{
+    position: absolute;
+    top: 2%;
+}
+
+.user-auth-btn-desk{
+    background-color: #89a4ffd5;
+    border: 2px solid #0000008f;
+    width: 12vh;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    font-size: 2.2vh;
+    margin: 2vh 0%;
+    transition: border .3s ,background-color .3s ;
+}
+
+
+.user-auth-btn-desk:hover{
+    background-color: #89a4ff;
+    border: 2px solid #000000;
+
+}
+
+.user-auth-btn-mob{
+    background-color: #89a4ff;
+    border: 2px solid #000000;
+    width: 12vh;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    font-size: 2.2vh;
+    margin: 2vh 0%;
+    transition: border .3s ,background-color .3s ;
+}
+
+.a-btn{
+    text-decoration: none;
+    color: #000000;
+}
+
+.section-cont-desk{
+    width: 100%;
+    height: 35vh;
+    background-position: center;
+    padding: .2%;
+    box-shadow: -1px 2px 32px 21px rgba(0, 204, 255, 0.568);
+    -webkit-box-shadow: -1px 2px 32px 21px rgb(0, 204, 255,0.568);
+    -moz-box-shadow: -1px 2px 32px 21px rgb(0, 204, 255,0.568);
+    transition: box-shadow .3s, opacity .2s;
+    cursor: pointer;
+    opacity: .7;
+}
+
+.section-cont-desk:hover{
+    box-shadow: -1px 2px 32px 21px rgba(0, 204, 255);
+    -webkit-box-shadow: -1px 2px 32px 21px rgb(0, 204, 255);
+    -moz-box-shadow: -1px 2px 32px 21px rgb(0, 204, 255);
+    opacity: 1;
+}
+
+.section-cont-mob{
+    width: 100%;
+    height: 25vh;
+    background-position: center;
+    box-shadow: -1px 2px 32px 21px rgba(0, 204, 255);
+    -webkit-box-shadow: -1px 2px 32px 21px rgb(0, 204, 255);
+    -moz-box-shadow: -1px 2px 32px 21px rgb(0, 204, 255);
+}
+
+.section-cont-create-card{
+    background-image: url("https://images7.alphacoders.com/129/1290499.png");
+
+}
+
+.section-cont-show-cards{
+    background-image: url("https://m.media-amazon.com/images/I/71GGPBojHQL._AC_UF894,1000_QL80_.jpg");
+}
+
+.section-cont-create-desk{
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/178/886/414/yu-gi-oh-card-hd-wallpaper-preview.jpg");
+}
+
+
+.separator-bean-desk{
+    padding: .5%;
+}
+
+.separator-bean-mob{
+    padding: 3%;
+}

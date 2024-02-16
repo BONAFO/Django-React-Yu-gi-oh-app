@@ -13,4 +13,5 @@ urlpatterns = [
     # path("validate-perms/", User_Perms_Validation_Perms.as_view()),
      path("login/", Login_View.as_view()),
      path("signup/", SignUp_View.as_view()),
+     path("validate-perms/", User_Perms_Validation_Perms.as_view()),
 ]

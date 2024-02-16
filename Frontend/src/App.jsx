@@ -5,6 +5,7 @@ import { BrowserRouter, redirect } from "react-router-dom";
 import Home_Routes from "./Routes/home.routes";
 import Cards_Routes from "./Routes/cards.routes";
 import CreateResponseContextProvider from "./Context/IsMobile";
+import Banner from "./Components/Banner/Banner";
 
 // http://localhost:4000/api/v1/users/
 
@@ -67,13 +68,16 @@ export default function App() {
 
 
     return <div>
+        <div className="background"> </div>
         <div id="subbody"></div>
         <CreateResponseContextProvider>
             <BrowserRouter>
+                <Banner></Banner>
                 <Home_Routes></Home_Routes>
                 <Cards_Routes></Cards_Routes>
             </BrowserRouter>
         </CreateResponseContextProvider>
-    </div>
+        </div>
+   
 }
 

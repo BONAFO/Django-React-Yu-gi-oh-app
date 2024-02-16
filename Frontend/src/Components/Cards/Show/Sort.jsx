@@ -13,7 +13,7 @@ export default function Cards_Sort() {
         <div>
             <label className={`selector-label-start-${respo} selector-label-${respo}`} htmlFor="">SORT</label>
             <select 
-            className={`selector-label-end-${respo} selector-label-${respo}`}
+            className={`selector-label-end-${respo} selector-label-${respo} selector-input-sort`}
             name="sort" value={queries_keys_page.order_by || "name"}  id="" onChange={(e) => {
                 const queries = [];
                 if(queries_keys_page["paginated"] !== undefined){
